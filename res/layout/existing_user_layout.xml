@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ivBackgroundDesc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnWinneThePooh"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_winnie_the_pooh" />
+
+                <TextView
+                    android:id="@+id/tvWinneThePoohUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnMickeyMouse"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_mickey_mouse" />
+
+                <TextView
+                    android:id="@+id/tvMickeyMouseUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnDonaldDuck"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_donald_duck" />
+
+                <TextView
+                    android:id="@+id/tvDonaldDuckUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnHelloKitty"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_hello_kitty" />
+
+                <TextView
+                    android:id="@+id/tvHelloKittyUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnDora"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_dora" />
+
+                <TextView
+                    android:id="@+id/tvDoraUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnSpongebob"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_spongebob" />
+
+                <TextView
+                    android:id="@+id/tvSpongebobUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnPatrick"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_patrick" />
+
+                <TextView
+                    android:id="@+id/tvPatrickUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                <ImageButton
+                    android:id="@+id/btnTweetyBird"
+                    android:layout_width="@dimen/newUser_btnAvatarWidth"
+                    android:layout_height="@dimen/newUser_btnAvatarHeight"
+                    android:contentDescription="@string/ivAvatarDesc"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/avatar_tweety_bird" />
+
+                <TextView
+                    android:id="@+id/tvTweetyBirdUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/existingUser_tvUserName" />
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

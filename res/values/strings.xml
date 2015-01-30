@@ -1,0 +1,65 @@
+<resources>
+
+    <string name="app_name">KindergartenGame</string>
+    
+    <string name="ivBackgroundDesc">Image Background</string>
+    <string name="ivAvatarDesc">Avatar</string>
+    
+    <!-- User Profile -->
+    <string name="userProfile_tvUserName">User Name</string>
+    <string name="userProfile_btnLearn">Learn</string>
+    <string name="userProfile_btnPlay">Play</string>
+    <string name="userProfile_btnScores">Scores</string>
+    <string name="userProfile_btnSettings">Settings</string>
+    <string name="userProfile_btnAbout">About</string>
+
+    <!-- Log In -->
+    <string name="login_btnNewUser">Create New User</string>
+    <string name="login_btnExistingUser">Existing User</string>
+    
+    <!-- New User -->
+    <string name="newUser_tvEnterName">Enter Name: </string>
+    <string name="newUser_etName">&lt;Your Name&gt;</string>
+    
+    <!-- Existing User -->
+    <string name="existingUser_tvUserName">User Name</string>
+    
+    <!-- Writing -->
+    <string name="learnWrite_btnClear">Clear</string>
+    <string name="learnWrite_btnSubmit">Submit</string>
+    
+    
+    <!-- Learn -->
+    <string name="learn_textViewLearn">Learn</string>
+    <string name="learn_buttonWrite">Write</string>
+    <string name="learn_buttonNumbers">Numbers</string>
+    <string name="learn_buttonColors">Colors</string>
+    <string name="learn_buttonShapes">Shapes</string>
+    
+    <!-- Play -->
+    <string name="play_textViewPlay">Play</string>
+    <string name="play_buttonWrite">Write</string>
+    <string name="play_buttonNumbers">Numbers</string>
+    <string name="play_buttonColors">Colors</string>
+    <string name="play_buttonShapes">Shapes</string>
+    
+    <!-- Scores -->
+    <string name="scores_textViewScores">Scores</string>
+    <string name="scores_buttonWrite">Write</string>
+    <string name="scores_buttonNumbers">Numbers</string>
+    <string name="scores_buttonColors">Colors</string>
+    <string name="scores_buttonShapes">Shapes</string>
+    
+    <!-- Scores Preview -->
+    <string name="scorespreview_textViewTimesPlayed">(times played)</string>
+    <string name="scorespreview_buttonPrevious">Previous</string>
+    <string name="scorespreview_buttonNext">Next</string>
+    <string name="scorespreview_textViewDateAndTimeVal">Date and Time</string>
+    <string name="scorespreview_textViewTotalScoreLbl">Total Score:</string>
+    <string name="scorespreview_textViewGameCategory">Game Category</string>
+    
+    <!-- Learn Write -->
+    <string name="learnWrite_buttonLetter">ABC</string>
+    <string name="learnWrite_buttonNumber">123</string>
+    
+</resources>

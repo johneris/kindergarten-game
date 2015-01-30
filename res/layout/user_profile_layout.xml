@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ivBackgroundDesc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:layout_width="@dimen/userProfile_linearLayoutAvatar"
+            android:layout_height="match_parent" >
+
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/ivAvatarDesc"
+                android:padding="@dimen/userProfile_ivAvatarPadding"
+                android:scaleType="fitXY"
+                android:src="@drawable/avatar_donald_duck" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="@dimen/userProfile_linearLayoutMenu"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_tvUserName"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/btnLearn"
+                android:layout_width="@dimen/userProfile_btnWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_btnLearn" />
+
+            <Button
+                android:id="@+id/btnPlay"
+                android:layout_width="@dimen/userProfile_btnWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_btnPlay" />
+
+            <Button
+                android:id="@+id/btnScores"
+                android:layout_width="@dimen/userProfile_btnWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_btnScores" />
+
+            <Button
+                android:id="@+id/btnSettings"
+                android:layout_width="@dimen/userProfile_btnWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_btnSettings" />
+
+            <Button
+                android:id="@+id/btnAbout"
+                android:layout_width="@dimen/userProfile_btnWidth"
+                android:layout_height="wrap_content"
+                android:text="@string/userProfile_btnAbout" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/numbergame_imageViewBackground"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ivBackgroundDesc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:id="@+id/numbergame_progressBar"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:id="@+id/textViewNumberGameTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/textViewTopTitlePadding"
+            android:text="@string/numbergame_textViewNumberGameTitle"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <TextView
+                android:id="@+id/numbergame_textViewN1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/numbergame_textViewPadding"
+                android:text="@string/numbergame_textViewN"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/numbergame_textViewN2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/numbergame_textViewPadding"
+                android:text="@string/numbergame_textViewN3"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/numbergame_textViewN3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/numbergame_textViewPadding"
+                android:text="@string/numbergame_textViewN"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/numbergame_buttonOption1"
+                android:layout_width="@dimen/numbergame_buttonOptionWidth"
+                android:layout_height="@dimen/numbergame_buttonOptionHeight"
+                android:text="@string/numbergame_textViewN" />
+
+            <Button
+                android:id="@+id/numbergame_buttonOption2"
+                android:layout_width="@dimen/numbergame_buttonOptionWidth"
+                android:layout_height="@dimen/numbergame_buttonOptionHeight"
+                android:text="@string/numbergame_textViewN" />
+
+            <Button
+                android:id="@+id/numbergame_buttonOption3"
+                android:layout_width="@dimen/numbergame_buttonOptionWidth"
+                android:layout_height="@dimen/numbergame_buttonOptionHeight"
+                android:text="@string/numbergame_textViewN" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>
