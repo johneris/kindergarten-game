@@ -86,7 +86,8 @@ public class MenuActivity extends Activity {
 		Resources res = getResources();
 
 		btnWriteLetters = new Button(getApplicationContext());
-		btnWriteLetters.setText(res.getString(R.string.menu_buttonWriteLetters));
+		btnWriteLetters
+				.setText(res.getString(R.string.menu_buttonWriteLetters));
 		btnWriteLetters.setWidth(res
 				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
 		btnWriteLetters.setHeight(res
@@ -97,19 +98,27 @@ public class MenuActivity extends Activity {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
 							LearnSubMenuActivity.class);
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_LETTER);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_LETTER);
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							LearnSubMenuActivity.class);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_LETTER);
+					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
-		
+
 		btnWriteNumbers = new Button(getApplicationContext());
-		btnWriteNumbers.setText(res.getString(R.string.menu_buttonWriteNumbers));
+		btnWriteNumbers
+				.setText(res.getString(R.string.menu_buttonWriteNumbers));
 		btnWriteNumbers.setWidth(res
 				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
 		btnWriteNumbers.setHeight(res
@@ -120,19 +129,27 @@ public class MenuActivity extends Activity {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
 							LearnSubMenuActivity.class);
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_NUMBER);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_NUMBER);
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							LearnSubMenuActivity.class);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_NUMBER);
+					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
 
 		btnCountNumbers = new Button(getApplicationContext());
-		btnCountNumbers.setText(res.getString(R.string.menu_buttonCountNumbers));
+		btnCountNumbers
+				.setText(res.getString(R.string.menu_buttonCountNumbers));
 		btnCountNumbers.setWidth(res
 				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
 		btnCountNumbers.setHeight(res
@@ -143,7 +160,8 @@ public class MenuActivity extends Activity {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
 							LearnSubMenuActivity.class);
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COUNT_NUMBERS);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_COUNT_NUMBERS);
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
@@ -152,7 +170,13 @@ public class MenuActivity extends Activity {
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							LearnSubMenuActivity.class);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_COUNT_NUMBERS);
+					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
@@ -175,7 +199,12 @@ public class MenuActivity extends Activity {
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							LearnSubMenuActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
+					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
@@ -198,11 +227,35 @@ public class MenuActivity extends Activity {
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							LearnSubMenuActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_SHAPES);
+					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
+					startActivity(intent);
+					finish();
 				}
 			}
 		});
 
+		
+		if (menu.equals(Constants.MENU_SCORES)) {
+			btnWriteLetters
+					.setEnabled(!Constants.currUserProfile.lstWriteLetterGameResult
+							.isEmpty());
+			btnWriteNumbers
+					.setEnabled(!Constants.currUserProfile.lstWriteNumberGameResult
+							.isEmpty());
+			btnCountNumbers
+					.setEnabled(!Constants.currUserProfile.lstCountNumberGameResult
+							.isEmpty());
+			btnColors
+					.setEnabled(!Constants.currUserProfile.lstColorGameResult
+							.isEmpty());
+			btnShapes
+					.setEnabled(!Constants.currUserProfile.lstShapeGameResult
+							.isEmpty());
+		}
+		
 		displayMenuButtons();
 	}
 
