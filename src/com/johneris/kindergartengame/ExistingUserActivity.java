@@ -74,33 +74,33 @@ public class ExistingUserActivity extends Activity {
 				true);
 
 		// fill the background ImageView with the resized image
-		ImageView iv_background = (ImageView) findViewById(R.id.ivBackground);
+		ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
 		iv_background.setImageBitmap(bmp);
 
 		/* Initialize Views */
 
-		btnWinnieThePooh = (ImageButton) findViewById(R.id.btnWinneThePooh);
+		btnWinnieThePooh = (ImageButton) findViewById(R.id.global_buttonWinneThePooh);
 		tvWinnieThePoohUserName = (TextView) findViewById(R.id.tvWinneThePoohUserName);
 
-		btnMickeyMouse = (ImageButton) findViewById(R.id.btnMickeyMouse);
+		btnMickeyMouse = (ImageButton) findViewById(R.id.global_buttonMickeyMouse);
 		tvMickeyMouseUserName = (TextView) findViewById(R.id.tvMickeyMouseUserName);
 
-		btnDonaldDuck = (ImageButton) findViewById(R.id.btnDonaldDuck);
+		btnDonaldDuck = (ImageButton) findViewById(R.id.global_buttonDonaldDuck);
 		tvDonaldDuckUserName = (TextView) findViewById(R.id.tvDonaldDuckUserName);
 
-		btnHelloKitty = (ImageButton) findViewById(R.id.btnHelloKitty);
+		btnHelloKitty = (ImageButton) findViewById(R.id.global_buttonHelloKitty);
 		tvHelloKittyUserName = (TextView) findViewById(R.id.tvHelloKittyUserName);
 
-		btnDora = (ImageButton) findViewById(R.id.btnDora);
+		btnDora = (ImageButton) findViewById(R.id.global_buttonDora);
 		tvDoraUserName = (TextView) findViewById(R.id.tvDoraUserName);
 
-		btnSpongebob = (ImageButton) findViewById(R.id.btnSpongebob);
+		btnSpongebob = (ImageButton) findViewById(R.id.global_buttonSpongebob);
 		tvSpongebobUserName = (TextView) findViewById(R.id.tvSpongebobUserName);
 
-		btnPatrick = (ImageButton) findViewById(R.id.btnPatrick);
+		btnPatrick = (ImageButton) findViewById(R.id.global_buttonPatrick);
 		tvPatrickUserName = (TextView) findViewById(R.id.tvPatrickUserName);
 
-		btnTweetyBird = (ImageButton) findViewById(R.id.btnTweetyBird);
+		btnTweetyBird = (ImageButton) findViewById(R.id.global_buttonTweetyBird);
 		tvTweetyBirdUserName = (TextView) findViewById(R.id.tvTweetyBirdUserName);
 
 		UserProfile user;

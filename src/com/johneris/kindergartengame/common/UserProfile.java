@@ -18,14 +18,19 @@ public class UserProfile implements Serializable {
 	public EAvatar avatar;
 	
 	/**
-	 * list of write game result
+	 * list of write letter game result
 	 */
-	public ArrayList<GameResult> lstWriteGameResult;
+	public ArrayList<GameResult> lstWriteLetterGameResult;
+	
+	/**
+	 * list of write number game result
+	 */
+	public ArrayList<GameResult> lstWriteNumberGameResult;
 	
 	/**
 	 * list of number game result
 	 */
-	public ArrayList<GameResult> lstNumberGameResult;
+	public ArrayList<GameResult> lstCountNumberGameResult;
 	
 	/**
 	 * list of shape game result
@@ -45,8 +50,9 @@ public class UserProfile implements Serializable {
 	public UserProfile() {
 		this.userName = "";
 		this.avatar = null;
-		this.lstWriteGameResult = new ArrayList<>();
-		this.lstNumberGameResult = new ArrayList<>();
+		this.lstWriteLetterGameResult = new ArrayList<>();
+		this.lstWriteNumberGameResult = new ArrayList<>();
+		this.lstCountNumberGameResult = new ArrayList<>();
 		this.lstShapeGameResult = new ArrayList<>();
 		this.lstColorGameResult = new ArrayList<>();
 		this.lstAddSubtractGameResult = new ArrayList<>();

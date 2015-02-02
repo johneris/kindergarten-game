@@ -64,19 +64,19 @@ public class NewUserActivity extends Activity {
 				true);
 
 		// fill the background ImageView with the resized image
-		ImageView iv_background = (ImageView) findViewById(R.id.ivBackground);
+		ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
 		iv_background.setImageBitmap(bmp);
 
 		/* Initialize views */
 
-		btnWinnieThePooh = (ImageButton) findViewById(R.id.btnWinneThePooh);
-		btnMickeyMouse = (ImageButton) findViewById(R.id.btnMickeyMouse);
-		btnDonaldDuck = (ImageButton) findViewById(R.id.btnDonaldDuck);
-		btnHelloKitty = (ImageButton) findViewById(R.id.btnHelloKitty);
-		btnDora = (ImageButton) findViewById(R.id.btnDora);
-		btnSpongebob = (ImageButton) findViewById(R.id.btnSpongebob);
-		btnPatrick = (ImageButton) findViewById(R.id.btnPatrick);
-		btnTweetyBird = (ImageButton) findViewById(R.id.btnTweetyBird);
+		btnWinnieThePooh = (ImageButton) findViewById(R.id.global_buttonWinneThePooh);
+		btnMickeyMouse = (ImageButton) findViewById(R.id.global_buttonMickeyMouse);
+		btnDonaldDuck = (ImageButton) findViewById(R.id.global_buttonDonaldDuck);
+		btnHelloKitty = (ImageButton) findViewById(R.id.global_buttonHelloKitty);
+		btnDora = (ImageButton) findViewById(R.id.global_buttonDora);
+		btnSpongebob = (ImageButton) findViewById(R.id.global_buttonSpongebob);
+		btnPatrick = (ImageButton) findViewById(R.id.global_buttonPatrick);
+		btnTweetyBird = (ImageButton) findViewById(R.id.global_buttonTweetyBird);
 		
 		btnWinnieThePooh.setOnClickListener(new OnClickListener() {
 			@Override
@@ -206,7 +206,7 @@ public class NewUserActivity extends Activity {
 			}
 		});
 
-		etName = (EditText) findViewById(R.id.etName);
+		etName = (EditText) findViewById(R.id.newUser_editTextName);
 		etName.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void afterTextChanged(Editable arg0) {

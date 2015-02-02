@@ -4,10 +4,10 @@
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/ivBackground"
+        android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ivBackgroundDesc" />
+        android:contentDescription="@string/global_imageViewBackgroundDesc" />
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,16 +16,16 @@
         android:orientation="vertical" >
 
         <Button
-            android:id="@+id/btnNewUser"
-            android:layout_width="@dimen/login_btnWidth"
+            android:id="@+id/login_buttonNewUser"
+            android:layout_width="@dimen/login_buttonWidth"
             android:layout_height="wrap_content"
-            android:text="@string/login_btnNewUser" />
+            android:text="@string/login_buttonNewUser" />
 
         <Button
-            android:id="@+id/btnExistingUser"
-            android:layout_width="@dimen/login_btnWidth"
+            android:id="@+id/login_buttonExistingUser"
+            android:layout_width="@dimen/login_buttonWidth"
             android:layout_height="wrap_content"
-            android:text="@string/login_btnExistingUser" />
+            android:text="@string/login_buttonExistingUser" />
 
     </LinearLayout>
 

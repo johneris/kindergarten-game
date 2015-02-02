@@ -1,48 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <dimen name="textViewTopTitlePadding">15dp</dimen>
-    <dimen name="buttonSquareWidth">100dp</dimen>
-    <dimen name="buttonSquareHeight">100dp</dimen>
+    <!-- used in Menu -->
+    <dimen name="global_textViewTopTitlePadding">15dp</dimen>
+    <dimen name="global_buttonSquareWidth">100dp</dimen>
+    <dimen name="global_buttonSquareHeight">100dp</dimen>
+    
+    <!-- used in New User and Existing User -->
+    <dimen name="global_buttonAvatarWidth">100dp</dimen>
+    <dimen name="global_buttonAvatarHeight">100dp</dimen>
+    
+    <!-- used in Game -->
+    <dimen name="global_gameTopTitlePadding">30dp</dimen>
     
     <!-- User Profile -->
-    <dimen name="userProfile_linearLayoutAvatar">300dp</dimen>
-    <dimen name="userProfile_linearLayoutMenu">200dp</dimen>
-    <dimen name="userProfile_ivAvatarPadding">15dp</dimen>
-    <dimen name="userProfile_btnWidth">100dp</dimen>
+    <dimen name="userProfile_linearLayoutAvatarWidth">300dp</dimen>
+    <dimen name="userProfile_linearLayoutMenuWidth">200dp</dimen>
+    <dimen name="userProfile_imageViewAvatarPadding">15dp</dimen>
+    <dimen name="userProfile_buttonWidth">100dp</dimen>
     
     <!-- LogIn -->
-    <dimen name="login_btnWidth">200dp</dimen>
+    <dimen name="login_buttonWidth">200dp</dimen>
     
     <!-- New User -->
-    <dimen name="newUser_btnAvatarWidth">100dp</dimen>
-    <dimen name="newUser_btnAvatarHeight">100dp</dimen>
-    <dimen name="newUser_etNameWidth">200dp</dimen>
-    
-    <!-- Learn Writing -->
-    <dimen name="learnWritingCanvasWidth">500dp</dimen>
-    <dimen name="learnWritingCanvasHeight">200dp</dimen>
+    <dimen name="newUser_editTextNameWidth">200dp</dimen>
     
     <!-- Scores Preview -->
-    <dimen name="scorespreview_linearLayoutPrevNextPadding">5dp</dimen>
-    <dimen name="scorespreview_linearLayoutTotalScorePadding">15dp</dimen>
-    
-    <!-- Learn Shape Main -->
-    <dimen name="learnShapeMainImageWidth">175dp</dimen>
-    <dimen name="learnShapeMainImageHeight">175dp</dimen>
-    
-    <!-- Learn Number Main -->
-    <dimen name="learnNumberMainImageWidth">200dp</dimen>
-    <dimen name="learnNumberMainImageHeight">175dp</dimen>
+    <dimen name="scoresPreview_linearLayoutPrevNextPadding">5dp</dimen>
+    <dimen name="scoresPreview_linearLayoutTotalScorePadding">15dp</dimen>
     
     <!-- Number Game -->
-    <dimen name="numbergame_textViewPadding">30dp</dimen>
-    <dimen name="numbergame_buttonOptionWidth">50dp</dimen>
-    <dimen name="numbergame_buttonOptionHeight">50dp</dimen>
+    <dimen name="numberGame_buttonOptionWidth">50dp</dimen>
+    <dimen name="numberGame_buttonOptionHeight">50dp</dimen>
+    <dimen name="numberGame_textViewPadding">15dp</dimen>
     
-    <!-- Number Game -->
-    <string name="numbergame_textViewNumberGameTitle">Guess the missing number</string>
-    <string name="numbergame_textViewN">N</string>
-    <string name="numbergame_textViewN3">_</string>
+    <!-- Learn Content -->
+    <dimen name="learnContent_imageViewMargin">15dp</dimen>
     
 </resources>

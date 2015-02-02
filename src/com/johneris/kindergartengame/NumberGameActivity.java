@@ -78,24 +78,24 @@ public class NumberGameActivity extends Activity {
 				true);
 
 		// fill the background ImageView with the resized image
-		ImageView iv_background = (ImageView) findViewById(R.id.numbergame_imageViewBackground);
+		ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
 		iv_background.setImageBitmap(bmp);
 
 		/* Initialize views */
 
-		progressBar = (ProgressBar) findViewById(R.id.numbergame_progressBar);
+		progressBar = (ProgressBar) findViewById(R.id.numberGame_progressBar);
 
 		textViewN = new TextView[3];
 
-		textViewN[0] = (TextView) findViewById(R.id.numbergame_textViewN1);
-		textViewN[1] = (TextView) findViewById(R.id.numbergame_textViewN2);
-		textViewN[2] = (TextView) findViewById(R.id.numbergame_textViewN3);
+		textViewN[0] = (TextView) findViewById(R.id.numberGame_textViewN1);
+		textViewN[1] = (TextView) findViewById(R.id.numberGame_textViewN2);
+		textViewN[2] = (TextView) findViewById(R.id.numberGame_textViewN3);
 
 		buttonOption = new Button[3];
 
-		buttonOption[0] = (Button) findViewById(R.id.numbergame_buttonOption1);
-		buttonOption[1] = (Button) findViewById(R.id.numbergame_buttonOption2);
-		buttonOption[2] = (Button) findViewById(R.id.numbergame_buttonOption3);
+		buttonOption[0] = (Button) findViewById(R.id.numberGame_buttonOption1);
+		buttonOption[1] = (Button) findViewById(R.id.numberGame_buttonOption2);
+		buttonOption[2] = (Button) findViewById(R.id.numberGame_buttonOption3);
 
 		/* Initialize game components */
 		gameResult = new GameResult();
@@ -106,7 +106,7 @@ public class NumberGameActivity extends Activity {
 		progressBarUpdateInterval = 180;
 		progressBar.setMax(Constants.MAX_TIME_PER_ITEM * 1000);
 
-		lstRandIndex = Randomizer.getRandomIndexes(Constants.lstNumber.size(),
+		lstRandIndex = Randomizer.getRandomIndexes(Constants.lstWritingNumber.size(),
 				Constants.ITEMS_PER_GAME);
 
 		game();
@@ -125,17 +125,17 @@ public class NumberGameActivity extends Activity {
 			gameResult.dateAndTimePlayed = DateFormat.getDateTimeInstance()
 					.format(Calendar.getInstance().getTime());
 
-			Constants.currUserProfile.lstNumberGameResult.add(gameResult);
+			Constants.currUserProfile.lstCountNumberGameResult.add(gameResult);
 			StoreUserProfiles.saveToFile(getApplicationContext());
 
 			// end game show results
 			Intent intent = new Intent(NumberGameActivity.this,
 					ScoresPreviewActivity.class);
-			intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_NUMBERS);
+			intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COUNT_NUMBERS);
 			intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_GAMES);
 			startActivity(intent);
 			finish();
-			
+
 		} else {
 			initGameItem();
 			countDownTimer = new CountDownTimer(
@@ -175,7 +175,7 @@ public class NumberGameActivity extends Activity {
 		int randIndex = lstRandIndex.get(iteration);
 
 		// get the correct answer
-		String strNumber = Constants.lstNumber.get(randIndex);
+		String strNumber = Constants.lstWritingNumber.get(randIndex);
 
 		// add to correct answers
 		gameResult.lstItemName.add(strNumber);
@@ -232,7 +232,7 @@ public class NumberGameActivity extends Activity {
 				game();
 			}
 		});
-		
+
 		// init button options
 		for (int i = 0; i < 3; i++) {
 			if (i == randomPosition) {
@@ -276,7 +276,7 @@ public class NumberGameActivity extends Activity {
 		MusicManager.start(this, MusicManager.MUSIC_ALL);
 	}
 
-	// public void onBackPressed() {
-	// }
+	public void onBackPressed() {
+	}
 
 }

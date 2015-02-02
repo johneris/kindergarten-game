@@ -13,9 +13,9 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -35,19 +35,19 @@ public class ScoresPreviewActivity extends Activity {
 	 */
 	boolean continueMusic = true;
 
-	TextView textViewGameCategory;
+	TextView tvGameCategory;
 
-	TextView textViewTimesPlayed;
+	TextView tvTimesPlayed;
 
 	TableLayout tableLayout;
 
-	TextView textViewDateAndTime;
+	TextView tvDateAndTime;
 
-	TextView textViewTotalScoreVal;
+	TextView tvTotalScore;
 
-	Button buttonPrevious;
+	Button btnPrevious;
 
-	Button buttonNext;
+	Button btnNext;
 
 	String category;
 
@@ -82,7 +82,7 @@ public class ScoresPreviewActivity extends Activity {
 				true);
 
 		// fill the background ImageView with the resized image
-		ImageView iv_background = (ImageView) findViewById(R.id.scorespreview_imageViewBackground);
+		ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
 		iv_background.setImageBitmap(bmp);
 
 		/* Get extras */
@@ -93,10 +93,12 @@ public class ScoresPreviewActivity extends Activity {
 			if (extras.containsKey(Keys.CATEGORY)) {
 				// get category
 				category = extras.getString(Keys.CATEGORY);
-				if (category.equals(Constants.CATEGORY_WRITE)) {
-					lstGameResult = Constants.currUserProfile.lstWriteGameResult;
-				} else if (category.equals(Constants.CATEGORY_NUMBERS)) {
-					lstGameResult = Constants.currUserProfile.lstNumberGameResult;
+				if (category.equals(Constants.CATEGORY_WRITE_LETTER)) {
+					lstGameResult = Constants.currUserProfile.lstWriteLetterGameResult;
+				} else if (category.equals(Constants.CATEGORY_WRITE_NUMBER)) {
+					lstGameResult = Constants.currUserProfile.lstWriteNumberGameResult;
+				} else if (category.equals(Constants.CATEGORY_COUNT_NUMBERS)) {
+					lstGameResult = Constants.currUserProfile.lstCountNumberGameResult;
 				} else if (category.equals(Constants.CATEGORY_COLORS)) {
 					lstGameResult = Constants.currUserProfile.lstColorGameResult;
 				} else if (category.equals(Constants.CATEGORY_SHAPES)) {
@@ -111,21 +113,20 @@ public class ScoresPreviewActivity extends Activity {
 
 		/* Initialize Views */
 
-		textViewGameCategory = (TextView) findViewById(R.id.scorespreview_textViewGameCategory);
-		textViewGameCategory.setText(category);
+		tvGameCategory = (TextView) findViewById(R.id.scoresPreview_textViewGameCategory);
+		tvGameCategory.setText(category);
 
-		textViewTimesPlayed = (TextView) findViewById(R.id.scorespreview_textViewTimesPlayed);
-		textViewTimesPlayed.setText(" (" + lstGameResult.size()
-				+ " times played)");
+		tvTimesPlayed = (TextView) findViewById(R.id.scoresPreview_textViewTimesPlayed);
+		tvTimesPlayed.setText(" (" + lstGameResult.size() + " times played)");
 
-		tableLayout = (TableLayout) findViewById(R.id.scorespreview_tableLayout);
+		tableLayout = (TableLayout) findViewById(R.id.scoresPreview_tableLayout);
 
-		textViewDateAndTime = (TextView) findViewById(R.id.scorespreview_textViewDateAndTimeVal);
+		tvDateAndTime = (TextView) findViewById(R.id.scoresPreview_textViewDateAndTimeVal);
 
-		textViewTotalScoreVal = (TextView) findViewById(R.id.scorespreview_textViewTotalScoreVal);
+		tvTotalScore = (TextView) findViewById(R.id.scoresPreview_textViewTotalScoreVal);
 
-		buttonPrevious = (Button) findViewById(R.id.scorespreview_buttonPrevious);
-		buttonPrevious.setOnClickListener(new OnClickListener() {
+		btnPrevious = (Button) findViewById(R.id.scoresPreview_buttonPrevious);
+		btnPrevious.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				currIndex--;
@@ -138,8 +139,8 @@ public class ScoresPreviewActivity extends Activity {
 			}
 		});
 
-		buttonNext = (Button) findViewById(R.id.scorespreview_buttonNext);
-		buttonNext.setOnClickListener(new OnClickListener() {
+		btnNext = (Button) findViewById(R.id.scoresPreview_buttonNext);
+		btnNext.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				currIndex++;
@@ -165,15 +166,15 @@ public class ScoresPreviewActivity extends Activity {
 	private void manageEnableOfButtons() {
 		// in last index
 		if (currIndex == lstGameResult.size() - 1) {
-			buttonNext.setEnabled(false);
+			btnNext.setEnabled(false);
 		} else {
-			buttonNext.setEnabled(true);
+			btnNext.setEnabled(true);
 		}
 		// in 0 index
 		if (currIndex == 0) {
-			buttonPrevious.setEnabled(false);
+			btnPrevious.setEnabled(false);
 		} else {
-			buttonPrevious.setEnabled(true);
+			btnPrevious.setEnabled(true);
 		}
 	}
 
@@ -197,8 +198,10 @@ public class ScoresPreviewActivity extends Activity {
 			ratingBarScore.setRating(result.lstScore.get(i));
 
 			// item name
-			TextView textViewItemDuration = new TextView(getApplicationContext());
-			textViewItemDuration.setText("(" + result.lstItemDuration.get(i) + "sec/s)");
+			TextView textViewItemDuration = new TextView(
+					getApplicationContext());
+			textViewItemDuration.setText("(" + result.lstItemDuration.get(i)
+					+ "sec/s)");
 			textViewItemDuration.setTextColor(Color.BLACK);
 
 			// create a table row
@@ -212,9 +215,9 @@ public class ScoresPreviewActivity extends Activity {
 			// add the row to table
 			tableLayout.addView(tableRow);
 		}
-		textViewDateAndTime.setText("" + result.dateAndTimePlayed);
-		textViewTotalScoreVal.setText("" + totalScore() + " ("
-				+ result.overallDuration + "secs)");
+		tvDateAndTime.setText("" + result.dateAndTimePlayed);
+		tvTotalScore.setText("" + totalScore() + " (" + result.overallDuration
+				+ "secs)");
 	}
 
 	/**
@@ -245,15 +248,15 @@ public class ScoresPreviewActivity extends Activity {
 
 	public void onBackPressed() {
 		if (Constants.ACTIVITY_GAMES.equals(fromActivity)) {
-			// start Play activity and finish ScoresPreview
 			Intent intent = new Intent(ScoresPreviewActivity.this,
-					PlayActivity.class);
+					MenuActivity.class);
+			intent.putExtra(Keys.MENU, Constants.MENU_PLAY);
 			startActivity(intent);
 			finish();
 		} else {
-			// start Scores activity and finish ScoresPreview
 			Intent intent = new Intent(ScoresPreviewActivity.this,
-					ScoresActivity.class);
+					MenuActivity.class);
+			intent.putExtra(Keys.MENU, Constants.MENU_SCORES);
 			startActivity(intent);
 			finish();
 		}

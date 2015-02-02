@@ -20,24 +20,23 @@ public class Constants {
 	public static UserProfile currUserProfile;
 
 	public static ArrayList<String> lstLetter;
-	public static ArrayList<String> lstNumber;
+	public static ArrayList<String> lstWritingNumber;
+	public static ArrayList<String> lstCountingNumber;
 	public static ArrayList<String> lstShape;
 	public static ArrayList<String> lstColor;
 
 	/**
 	 * category constants
 	 */
-	public static final String CATEGORY_WRITE = "Write";
-	public static final String CATEGORY_NUMBERS = "Numbers";
+	public static final String CATEGORY_WRITE_LETTER = "Writing Letters";
+	public static final String CATEGORY_WRITE_NUMBER = "Writing Numbers";
+	public static final String CATEGORY_COUNT_NUMBERS = "Counting Numbers";
 	public static final String CATEGORY_COLORS = "Colors";
 	public static final String CATEGORY_SHAPES = "Shapes";
-
-	public static final String LEARN_WRITE_LETTER_UPPERCASE = "LEARN_WRITE_LETTER_UPPERCASE";
-	public static final String LEARN_WRITE_LETTER_LOWERCASE = "LEARN_WRITE_LETTER_LOWERCASE";
-	public static final String LEARN_WRITE_NUMBER = "LEARN_WRITE_NUMBER";
-	public static final String LEARN_NUMBER = "LEARN_NUMBER";
-	public static final String LEARN_COLOR = "LEARN_COLOR";
-	public static final String LEARN_SHAPE = "LEARN_SHAPE";
+	
+	public static final String MENU_LEARN = "LEARN";
+	public static final String MENU_PLAY = "PLAY";
+	public static final String MENU_SCORES = "SCORES";
 
 	public static final int MAX_TIME_PER_ITEM = 9;
 	public static final int ITEMS_PER_GAME = 5;
@@ -45,12 +44,12 @@ public class Constants {
 	public static final String LEARN_WRITE_LETTER_UPPERCASE_DIR = "learn/write/letter/uppercase/";
 	public static final String LEARN_WRITE_LETTER_LOWERCASE_DIR = "learn/write/letter/lowercase/";
 	public static final String LEARN_WRITE_NUMBER_DIR = "learn/write/number/";
-	public static final String LEARN_NUMBER_DIR = "learn/number/";
+	public static final String LEARN_COUNT_NUMBER_DIR = "learn/number/";
 	public static final String LEARN_SHAPE_DIR = "play/shape/";
 
 	public static final String ACTIVITY_GAMES = "GamesActivity";
 	public static final String ACTIVITY_SCORES = "ScoresActivity";
-
+	
 	static {
 
 		lstUserProfile = new ArrayList<>();
@@ -61,10 +60,15 @@ public class Constants {
 			lstLetter.add(letters.charAt(i) + "");
 		}
 
-		lstNumber = new ArrayList<>();
+		lstWritingNumber = new ArrayList<>();
 		String numbers = "0123456789";
 		for (int i = 0; i < numbers.length(); i++) {
-			lstNumber.add(numbers.charAt(i) + "");
+			lstWritingNumber.add(numbers.charAt(i) + "");
+		}
+		
+		lstCountingNumber = new ArrayList<>();
+		for (int ctr = 1; ctr <= 10; ctr++) {
+			lstCountingNumber.add(ctr + "");
 		}
 		
 		lstShape = new ArrayList<>();
@@ -77,7 +81,7 @@ public class Constants {
 		lstShape.add("star");
 		lstShape.add("triangle");
 		
-		
+		lstColor = new ArrayList<>();
 	}
 
 	public static UserProfile getUserProfileForAvatar(EAvatar avatar) {

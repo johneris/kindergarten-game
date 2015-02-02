@@ -2,53 +2,35 @@
 
     <string name="app_name">KindergartenGame</string>
     
-    <string name="ivBackgroundDesc">Image Background</string>
-    <string name="ivAvatarDesc">Avatar</string>
+    <string name="global_imageViewBackgroundDesc">Image Background</string>
+    <string name="global_imageViewAvatarDesc">Avatar</string>
+    <string name="global_textViewTopTitle">Top Title</string>
     
     <!-- User Profile -->
-    <string name="userProfile_tvUserName">User Name</string>
-    <string name="userProfile_btnLearn">Learn</string>
-    <string name="userProfile_btnPlay">Play</string>
-    <string name="userProfile_btnScores">Scores</string>
-    <string name="userProfile_btnSettings">Settings</string>
-    <string name="userProfile_btnAbout">About</string>
+    <string name="userProfile_textViewUserName">User Name</string>
+    <string name="userProfile_buttonLearn">Learn</string>
+    <string name="userProfile_buttonPlay">Play</string>
+    <string name="userProfile_buttonScores">Scores</string>
+    <string name="userProfile_buttonSettings">Settings</string>
+    <string name="userProfile_buttonAbout">About</string>
 
     <!-- Log In -->
-    <string name="login_btnNewUser">Create New User</string>
-    <string name="login_btnExistingUser">Existing User</string>
+    <string name="login_buttonNewUser">Create New User</string>
+    <string name="login_buttonExistingUser">Existing User</string>
     
     <!-- New User -->
-    <string name="newUser_tvEnterName">Enter Name: </string>
-    <string name="newUser_etName">&lt;Your Name&gt;</string>
+    <string name="newUser_textViewEnterName">Enter Name: </string>
+    <string name="newUser_editTextName">&lt;Your Name&gt;</string>
     
     <!-- Existing User -->
-    <string name="existingUser_tvUserName">User Name</string>
+    <string name="existingUser_textViewUserName">User Name</string>
     
-    <!-- Writing -->
-    <string name="learnWrite_btnClear">Clear</string>
-    <string name="learnWrite_btnSubmit">Submit</string>
-    
-    
-    <!-- Learn -->
-    <string name="learn_textViewLearn">Learn</string>
-    <string name="learn_buttonWrite">Write</string>
-    <string name="learn_buttonNumbers">Numbers</string>
-    <string name="learn_buttonColors">Colors</string>
-    <string name="learn_buttonShapes">Shapes</string>
-    
-    <!-- Play -->
-    <string name="play_textViewPlay">Play</string>
-    <string name="play_buttonWrite">Write</string>
-    <string name="play_buttonNumbers">Numbers</string>
-    <string name="play_buttonColors">Colors</string>
-    <string name="play_buttonShapes">Shapes</string>
-    
-    <!-- Scores -->
-    <string name="scores_textViewScores">Scores</string>
-    <string name="scores_buttonWrite">Write</string>
-    <string name="scores_buttonNumbers">Numbers</string>
-    <string name="scores_buttonColors">Colors</string>
-    <string name="scores_buttonShapes">Shapes</string>
+    <!-- Menu -->
+    <string name="menu_buttonWriteLetters">Write Letters</string>
+    <string name="menu_buttonWriteNumbers">Write Numbers</string>
+    <string name="menu_buttonCountNumbers">Count Numbers</string>
+    <string name="menu_buttonColors">Colors</string>
+    <string name="menu_buttonShapes">Shapes</string>
     
     <!-- Scores Preview -->
     <string name="scorespreview_textViewTimesPlayed">(times played)</string>
@@ -61,5 +43,9 @@
     <!-- Learn Write -->
     <string name="learnWrite_buttonLetter">ABC</string>
     <string name="learnWrite_buttonNumber">123</string>
+    
+    <!-- Number game -->
+    <string name="numberGame_textViewNumberGameTitle">Guess the missing number</string>
+    <string name="numberGame_textViewN">N</string>
     
 </resources>

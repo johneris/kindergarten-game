@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
           getResources(),R.drawable.background_menu),size.x,size.y,true);
         
         // fill the background ImageView with the resized image
-        ImageView iv_background = (ImageView) findViewById(R.id.ivBackground);
+        ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
         iv_background.setImageBitmap(bmp);
         
         
@@ -63,7 +63,10 @@ public class MainActivity extends Activity {
     	startActivity(intent);
     	finish();
         
-        
+	}
+	
+	@Override
+	public void onBackPressed() {
 	}
 	
 }

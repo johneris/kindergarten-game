@@ -4,10 +4,10 @@
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/scorespreview_imageViewBackground"
+        android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ivBackgroundDesc" />
+        android:contentDescription="@string/global_imageViewBackgroundDesc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,15 +16,15 @@
         android:orientation="vertical" >
 
         <TextView
-            android:id="@+id/scorespreview_textViewGameCategory"
+            android:id="@+id/scoresPreview_textViewGameCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/textViewTopTitlePadding"
+            android:padding="@dimen/global_textViewTopTitlePadding"
             android:text="@string/scorespreview_textViewGameCategory"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
-            android:id="@+id/scorespreview_textViewTimesPlayed"
+            android:id="@+id/scoresPreview_textViewTimesPlayed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/scorespreview_textViewTimesPlayed" />
@@ -36,7 +36,7 @@
             android:scrollbars="none" >
 
             <TableLayout
-                android:id="@+id/scorespreview_tableLayout"
+                android:id="@+id/scoresPreview_tableLayout"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -48,10 +48,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="@dimen/scorespreview_linearLayoutTotalScorePadding" >
+            android:paddingTop="@dimen/scoresPreview_linearLayoutTotalScorePadding" >
 
             <TextView
-                android:id="@+id/scorespreview_textViewDateAndTimeVal"
+                android:id="@+id/scoresPreview_textViewDateAndTimeVal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scorespreview_textViewDateAndTimeVal" />
@@ -64,13 +64,13 @@
             android:gravity="center" >
 
             <TextView
-                android:id="@+id/scorespreview_textViewTotalScoreLbl"
+                android:id="@+id/scoresPreview_textViewTotalScoreLbl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scorespreview_textViewTotalScoreLbl" />
 
             <TextView
-                android:id="@+id/scorespreview_textViewTotalScoreVal"
+                android:id="@+id/scoresPreview_textViewTotalScoreVal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -80,17 +80,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingBottom="@dimen/scorespreview_linearLayoutPrevNextPadding"
-            android:paddingTop="@dimen/scorespreview_linearLayoutPrevNextPadding" >
+            android:paddingBottom="@dimen/scoresPreview_linearLayoutPrevNextPadding"
+            android:paddingTop="@dimen/scoresPreview_linearLayoutPrevNextPadding" >
 
             <Button
-                android:id="@+id/scorespreview_buttonPrevious"
+                android:id="@+id/scoresPreview_buttonPrevious"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scorespreview_buttonPrevious" />
 
             <Button
-                android:id="@+id/scorespreview_buttonNext"
+                android:id="@+id/scoresPreview_buttonNext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/scorespreview_buttonNext" />

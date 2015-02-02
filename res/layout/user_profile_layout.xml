@@ -4,10 +4,10 @@
     android:layout_height="match_parent" >
     
     <ImageView
-        android:id="@+id/ivBackground"
+        android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ivBackgroundDesc" />
+        android:contentDescription="@string/global_imageViewBackgroundDesc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,63 +16,63 @@
         android:orientation="horizontal" >
 
         <FrameLayout
-            android:layout_width="@dimen/userProfile_linearLayoutAvatar"
+            android:layout_width="@dimen/userProfile_linearLayoutAvatarWidth"
             android:layout_height="match_parent" >
 
             <ImageView
-                android:id="@+id/ivAvatar"
+                android:id="@+id/userProfile_imageViewAvatar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/ivAvatarDesc"
-                android:padding="@dimen/userProfile_ivAvatarPadding"
-                android:scaleType="fitXY"
+                android:contentDescription="@string/global_imageViewAvatarDesc"
+                android:padding="@dimen/userProfile_imageViewAvatarPadding"
+                android:scaleType="centerInside"
                 android:src="@drawable/avatar_donald_duck" />
 
         </FrameLayout>
 
         <LinearLayout
-            android:layout_width="@dimen/userProfile_linearLayoutMenu"
+            android:layout_width="@dimen/userProfile_linearLayoutMenuWidth"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/tvUserName"
+                android:id="@+id/userProfile_textViewUserName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_tvUserName"
+                android:text="@string/userProfile_textViewUserName"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <Button
-                android:id="@+id/btnLearn"
-                android:layout_width="@dimen/userProfile_btnWidth"
+                android:id="@+id/userProfile_buttonLearn"
+                android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_btnLearn" />
+                android:text="@string/userProfile_buttonLearn" />
 
             <Button
-                android:id="@+id/btnPlay"
-                android:layout_width="@dimen/userProfile_btnWidth"
+                android:id="@+id/userProfile_buttonPlay"
+                android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_btnPlay" />
+                android:text="@string/userProfile_buttonPlay" />
 
             <Button
-                android:id="@+id/btnScores"
-                android:layout_width="@dimen/userProfile_btnWidth"
+                android:id="@+id/userProfile_buttonScores"
+                android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_btnScores" />
+                android:text="@string/userProfile_buttonScores" />
 
             <Button
-                android:id="@+id/btnSettings"
-                android:layout_width="@dimen/userProfile_btnWidth"
+                android:id="@+id/userProfile_buttonSettings"
+                android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_btnSettings" />
+                android:text="@string/userProfile_buttonSettings" />
 
             <Button
-                android:id="@+id/btnAbout"
-                android:layout_width="@dimen/userProfile_btnWidth"
+                android:id="@+id/userProfile_buttonAbout"
+                android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_btnAbout" />
+                android:text="@string/userProfile_buttonAbout" />
         </LinearLayout>
     </LinearLayout>
 

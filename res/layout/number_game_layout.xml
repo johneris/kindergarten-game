@@ -4,10 +4,10 @@
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/numbergame_imageViewBackground"
+        android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ivBackgroundDesc" />
+        android:contentDescription="@string/global_imageViewBackgroundDesc" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,17 +16,17 @@
         android:orientation="vertical" >
 
         <ProgressBar
-            android:id="@+id/numbergame_progressBar"
+            android:id="@+id/numberGame_progressBar"
             style="@android:style/Widget.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="30dp" />
 
         <TextView
-            android:id="@+id/textViewNumberGameTitle"
+            android:id="@+id/numberGame_textViewNumberGameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="@dimen/textViewTopTitlePadding"
-            android:text="@string/numbergame_textViewNumberGameTitle"
+            android:padding="@dimen/global_textViewTopTitlePadding"
+            android:text="@string/numberGame_textViewNumberGameTitle"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <LinearLayout
@@ -35,27 +35,27 @@
             android:gravity="center" >
 
             <TextView
-                android:id="@+id/numbergame_textViewN1"
+                android:id="@+id/numberGame_textViewN1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/numbergame_textViewPadding"
-                android:text="@string/numbergame_textViewN"
+                android:padding="@dimen/numberGame_textViewPadding"
+                android:text="@string/numberGame_textViewN"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/numbergame_textViewN2"
+                android:id="@+id/numberGame_textViewN2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/numbergame_textViewPadding"
-                android:text="@string/numbergame_textViewN3"
+                android:padding="@dimen/numberGame_textViewPadding"
+                android:text="@string/numberGame_textViewN"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/numbergame_textViewN3"
+                android:id="@+id/numberGame_textViewN3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/numbergame_textViewPadding"
-                android:text="@string/numbergame_textViewN"
+                android:padding="@dimen/numberGame_textViewPadding"
+                android:text="@string/numberGame_textViewN"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>
@@ -66,22 +66,22 @@
             android:gravity="center" >
 
             <Button
-                android:id="@+id/numbergame_buttonOption1"
-                android:layout_width="@dimen/numbergame_buttonOptionWidth"
-                android:layout_height="@dimen/numbergame_buttonOptionHeight"
-                android:text="@string/numbergame_textViewN" />
+                android:id="@+id/numberGame_buttonOption1"
+                android:layout_width="@dimen/numberGame_buttonOptionWidth"
+                android:layout_height="@dimen/numberGame_buttonOptionHeight"
+                android:text="@string/numberGame_textViewN" />
 
             <Button
-                android:id="@+id/numbergame_buttonOption2"
-                android:layout_width="@dimen/numbergame_buttonOptionWidth"
-                android:layout_height="@dimen/numbergame_buttonOptionHeight"
-                android:text="@string/numbergame_textViewN" />
+                android:id="@+id/numberGame_buttonOption2"
+                android:layout_width="@dimen/numberGame_buttonOptionWidth"
+                android:layout_height="@dimen/numberGame_buttonOptionHeight"
+                android:text="@string/numberGame_textViewN" />
 
             <Button
-                android:id="@+id/numbergame_buttonOption3"
-                android:layout_width="@dimen/numbergame_buttonOptionWidth"
-                android:layout_height="@dimen/numbergame_buttonOptionHeight"
-                android:text="@string/numbergame_textViewN" />
+                android:id="@+id/numberGame_buttonOption3"
+                android:layout_width="@dimen/numberGame_buttonOptionWidth"
+                android:layout_height="@dimen/numberGame_buttonOptionHeight"
+                android:text="@string/numberGame_textViewN" />
 
         </LinearLayout>
 

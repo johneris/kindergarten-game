@@ -4,9 +4,9 @@
     android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/ivBackground"
+        android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/ivBackgroundDesc" />
+        android:contentDescription="@string/global_imageViewBackgroundDesc" />
 
 </FrameLayout>

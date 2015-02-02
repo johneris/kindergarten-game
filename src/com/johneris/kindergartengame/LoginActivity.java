@@ -53,13 +53,13 @@ public class LoginActivity extends Activity {
           getResources(),R.drawable.background_menu),size.x,size.y,true);
         
         // fill the background ImageView with the resized image
-        ImageView iv_background = (ImageView) findViewById(R.id.ivBackground);
+        ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
         iv_background.setImageBitmap(bmp);
         
         
         /*Initialize Views*/
         
-        btnNewUser = (Button) findViewById(R.id.btnNewUser);
+        btnNewUser = (Button) findViewById(R.id.login_buttonNewUser);
         btnNewUser.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -70,7 +70,7 @@ public class LoginActivity extends Activity {
 			}
         });
         
-        btnExistingUser = (Button) findViewById(R.id.btnExistingUser);
+        btnExistingUser = (Button) findViewById(R.id.login_buttonExistingUser);
         btnExistingUser.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
