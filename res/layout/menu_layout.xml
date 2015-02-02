@@ -25,18 +25,28 @@
 
         <ScrollView
             android:layout_width="fill_parent"
-            android:layout_height="0dp"
+            android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:layout_weight="1"
+            android:fillViewport="true"
             android:scrollbars="none" >
 
-            <TableLayout
-                android:id="@+id/menu_tableLayout"
-                android:layout_width="fill_parent"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:showDividers="end" >
-            </TableLayout>
+                android:orientation="vertical" >
+
+                <TableLayout
+                    android:id="@+id/menu_tableLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:showDividers="end" >
+
+                </TableLayout>
+
+            </LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>

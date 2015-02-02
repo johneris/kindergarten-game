@@ -131,7 +131,7 @@ public class LearnSubMenuActivity extends Activity {
 			tblRow.addView(btnUppercase);
 			tblRow.addView(btnLowercase);
 			
-			if ((((i + 1) % 5) == 0) || (i == (Constants.lstLetter.size() - 1))) {
+			if ((((i + 1) % 3) == 0) || (i == (Constants.lstLetter.size() - 1))) {
 				tblRow.setGravity(Gravity.CENTER);
 				tbl.addView(tblRow);
 				tblRows.add(new TableRow(getApplicationContext()));
