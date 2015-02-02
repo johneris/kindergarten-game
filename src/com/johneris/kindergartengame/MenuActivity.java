@@ -106,7 +106,7 @@ public class MenuActivity extends Activity {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							ScoresPreviewActivity.class);
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_WRITE_LETTER);
 					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
@@ -137,7 +137,7 @@ public class MenuActivity extends Activity {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							ScoresPreviewActivity.class);
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_WRITE_NUMBER);
 					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
@@ -171,7 +171,7 @@ public class MenuActivity extends Activity {
 					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							ScoresPreviewActivity.class);
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_COUNT_NUMBERS);
 					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
@@ -200,7 +200,7 @@ public class MenuActivity extends Activity {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							ScoresPreviewActivity.class);
 					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
 					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
 					startActivity(intent);
@@ -228,7 +228,7 @@ public class MenuActivity extends Activity {
 
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							ScoresPreviewActivity.class);
 					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_SHAPES);
 					intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_SCORES);
 					startActivity(intent);
