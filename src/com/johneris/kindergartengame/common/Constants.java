@@ -45,7 +45,8 @@ public class Constants {
 	public static final String LEARN_WRITE_LETTER_LOWERCASE_DIR = "learn/write/letter/lowercase/";
 	public static final String LEARN_WRITE_NUMBER_DIR = "learn/write/number/";
 	public static final String LEARN_COUNT_NUMBER_DIR = "learn/number/";
-	public static final String LEARN_SHAPE_DIR = "play/shape/";
+	public static final String LEARN_SHAPE_DIR = "learn/shape/";
+	public static final String LEARN_COLOR_DIR = "learn/color/";
 
 	public static final String ACTIVITY_GAMES = "GamesActivity";
 	public static final String ACTIVITY_SCORES = "ScoresActivity";
@@ -82,6 +83,18 @@ public class Constants {
 		lstShape.add("triangle");
 		
 		lstColor = new ArrayList<>();
+		lstColor.add("black");
+		lstColor.add("blue");
+		lstColor.add("brown");
+		lstColor.add("gray");
+		lstColor.add("green");
+		lstColor.add("orange");
+		lstColor.add("pink");
+		lstColor.add("purple");
+		lstColor.add("red");
+		lstColor.add("white");
+		lstColor.add("yellow");
+		
 	}
 
 	public static UserProfile getUserProfileForAvatar(EAvatar avatar) {

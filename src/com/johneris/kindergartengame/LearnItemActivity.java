@@ -130,7 +130,15 @@ public class LearnItemActivity extends Activity {
 			}
 
 		} else if (Constants.CATEGORY_COLORS.equals(category)) {
-
+			
+			try {
+				InputStream ims = getAssets().open(
+						Constants.LEARN_COLOR_DIR + item + ".PNG");
+				Drawable d = Drawable.createFromStream(ims, null);
+				iv.setImageDrawable(d);
+			} catch (IOException ex) {
+			}
+			
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
 
 			try {

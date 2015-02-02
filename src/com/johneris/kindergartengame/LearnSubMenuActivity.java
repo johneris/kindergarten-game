@@ -85,12 +85,13 @@ public class LearnSubMenuActivity extends Activity {
 		} else if (Constants.CATEGORY_COUNT_NUMBERS.equals(category)) {
 			loadCountNumberOptions();
 		} else if (Constants.CATEGORY_COLORS.equals(category)) {
-
+			loadColorOptions();
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
 			loadShapeOptions();
 		}
 	}
 	
+	@SuppressLint("DefaultLocale")
 	private void loadWriteLetterOptions() {
 		ArrayList<TableRow> tblRows = new ArrayList<>();
 		tblRows.add(new TableRow(getApplicationContext()));
@@ -175,7 +176,8 @@ public class LearnSubMenuActivity extends Activity {
 		}
 	}
 	
-	@SuppressLint("DefaultLocale")
+	
+	
 	private void loadCountNumberOptions() {
 
 		ArrayList<String> countingNumbers = Constants.lstCountingNumber;
@@ -215,7 +217,6 @@ public class LearnSubMenuActivity extends Activity {
 	
 	
 	
-	@SuppressLint("DefaultLocale")
 	private void loadShapeOptions() {
 		
 		ArrayList<TableRow> tblRows = new ArrayList<>();
@@ -253,6 +254,44 @@ public class LearnSubMenuActivity extends Activity {
 		
 	}
 	
+	
+	
+	private void loadColorOptions() {
+		
+		ArrayList<TableRow> tblRows = new ArrayList<>();
+		tblRows.add(new TableRow(getApplicationContext()));
+		
+		TableRow tblRow = tblRows.get(0);
+
+		for (int i = 0; i < Constants.lstColor.size(); i++) {
+			final String color = Constants.lstColor.get(i);
+
+			Button btnColor = new Button(getApplicationContext());
+			btnColor.setText(color);
+			btnColor.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					Intent intent = new Intent(LearnSubMenuActivity.this,
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM, color);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
+					startActivity(intent);
+					finish();
+				}
+			});
+			
+			tblRow.addView(btnColor);
+			
+			if ((((i + 1) % 3) == 0) || (i == (Constants.lstColor.size() - 1))) {
+				tblRow.setGravity(Gravity.CENTER);
+				tbl.addView(tblRow);
+				tblRows.add(new TableRow(getApplicationContext()));
+				tblRow = tblRows.get(tblRows.size()-1);
+			}
+			
+		}
+		
+	}
 	
 	
 
