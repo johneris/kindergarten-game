@@ -32,6 +32,10 @@
     <!-- Number Game -->
     <dimen name="numberGame_textViewPadding">15dp</dimen>
     
+    <!-- Writing Game -->
+    <dimen name="writingGame_canvasWidth">150dp</dimen>
+    <dimen name="writingGame_canvasHeight">150dp</dimen>
+    
     <!-- Learn Content -->
     <dimen name="learnContent_imageViewMargin">15dp</dimen>
     

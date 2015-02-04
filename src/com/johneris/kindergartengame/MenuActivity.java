@@ -104,7 +104,11 @@ public class MenuActivity extends Activity {
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							WriteGameActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_LETTER);
+					startActivity(intent);
+					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ScoresPreviewActivity.class);
@@ -135,7 +139,11 @@ public class MenuActivity extends Activity {
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							WriteGameActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_NUMBER);
+					startActivity(intent);
+					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ScoresPreviewActivity.class);

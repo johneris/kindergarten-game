@@ -50,4 +50,9 @@
     <string name="numberGame_textViewNumberGameTitle">Guess the missing number</string>
     <string name="numberGame_textViewN">N</string>
     
+    <!-- Writing game -->
+    <string name="writingGame_buttonSubmit">Submit</string>
+    <string name="writingGame_buttonClear">Clear</string>
+    <string name="writingGame_imageViewDesc">writing image</string>
+    
 </resources>

@@ -49,6 +49,11 @@ public class DrawView extends View {
 		mBitmapPaint.setColor(Color.RED);
 	}
 	
+	public void clear() {
+		mBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
+		mCanvas.setBitmap(mBitmap);
+	}
+	
 	public Bitmap getBitmap() {
 		return this.mBitmap;
 	}

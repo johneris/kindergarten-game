@@ -48,6 +48,9 @@ public class Constants {
 	public static final String LEARN_SHAPE_DIR = "learn/shape/";
 	public static final String LEARN_COLOR_DIR = "learn/color/";
 	
+	public static final String PLAY_WRITE_LETTER_UPPERCASE_DIR = "play/write/letter/uppercase/";
+	public static final String PLAY_WRITE_LETTER_LOWERCASE_DIR = "play/write/letter/lowercase/";
+	public static final String PLAY_WRITE_NUMBER_DIR = "play/write/number/";
 	public static final String PLAY_SHAPE_DIR = "play/shape/";
 	public static final String PLAY_COLOR_DIR = "play/color/";
 	
