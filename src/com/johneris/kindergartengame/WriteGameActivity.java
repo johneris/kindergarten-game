@@ -112,14 +112,15 @@ public class WriteGameActivity extends Activity {
 
 		btnSubmit = (Button) findViewById(R.id.writeGame_buttonSubmit);
 		btnClear = (Button) findViewById(R.id.writeGame_buttonClear);
-		
+
 		btnClear.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				
+				drawView.clear();
+				drawView.init();
 			}
 		});
-		
+
 		/* Initialize game components */
 		gameResult = new GameResult();
 
@@ -212,6 +213,9 @@ public class WriteGameActivity extends Activity {
 	}
 
 	private void initGameItem() {
+		// clear the canvas
+		drawView.clear();
+		drawView.init();
 
 		// get random index
 		int randIndex = lstRandIndex.get(iteration);
@@ -222,7 +226,8 @@ public class WriteGameActivity extends Activity {
 			strAnswer = Constants.lstLetter.get(randIndex);
 			// random uppercase or lowercase
 			boolean randBool = new Random().nextBoolean();
-			strAnswer = randBool ? strAnswer.toLowerCase() : strAnswer.toUpperCase();
+			strAnswer = randBool ? strAnswer.toLowerCase() : strAnswer
+					.toUpperCase();
 		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 			strAnswer = Constants.lstWritingNumber.get(randIndex);
 		}
@@ -234,9 +239,11 @@ public class WriteGameActivity extends Activity {
 		String image = "";
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
 			if (Character.isLowerCase(strAnswer.charAt(0))) {
-				image = Constants.PLAY_WRITE_LETTER_LOWERCASE_DIR + strAnswer + ".PNG";
+				image = Constants.PLAY_WRITE_LETTER_LOWERCASE_DIR + strAnswer
+						+ ".PNG";
 			} else if (Character.isUpperCase(strAnswer.charAt(0))) {
-				image = Constants.PLAY_WRITE_LETTER_UPPERCASE_DIR + strAnswer + ".PNG";
+				image = Constants.PLAY_WRITE_LETTER_UPPERCASE_DIR + strAnswer
+						+ ".PNG";
 			}
 		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 			image = Constants.PLAY_WRITE_NUMBER_DIR + strAnswer + ".PNG";
@@ -252,8 +259,6 @@ public class WriteGameActivity extends Activity {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				drawView.clear();
-				
 				gameResult.lstIsCorrect.add(true);
 
 				double time = ((double) progressBar.getProgress()) / 1000;

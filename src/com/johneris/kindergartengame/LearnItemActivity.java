@@ -70,7 +70,8 @@ public class LearnItemActivity extends Activity {
 
 		/* Initialize Views */
 
-		tvTopTitle = (TextView) this.findViewById(R.id.globalGame_textViewTopTitle);
+		tvTopTitle = (TextView) this
+				.findViewById(R.id.globalGame_textViewTopTitle);
 		tvTopTitle.setText(item);
 
 		iv = (ImageView) this.findViewById(R.id.learnContent_imageView);
@@ -78,21 +79,20 @@ public class LearnItemActivity extends Activity {
 		loadImage();
 	}
 
-	
-	
 	private void loadImage() {
 
-		if (Constants.CATEGORY_WRITE_LETTER.equals(category) ||
-				Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
+		if (Constants.CATEGORY_WRITE_LETTER.equals(category)
+				|| Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 
 			FrameLayout frameLayout = (FrameLayout) findViewById(R.id.learnItem_frameLayoutImage);
 
-			DrawView drawView = new DrawView(getApplicationContext());
+			final DrawView drawView = new DrawView(getApplicationContext());
 
 			LinearLayout linearLayout = new LinearLayout(
 					getApplicationContext());
 
-			LayoutParams params = new LayoutParams(frameLayout.getLayoutParams().width,
+			LayoutParams params = new LayoutParams(
+					frameLayout.getLayoutParams().width,
 					frameLayout.getLayoutParams().height, 1.0f);
 			linearLayout.setLayoutParams(params);
 
@@ -101,18 +101,17 @@ public class LearnItemActivity extends Activity {
 
 			try {
 				String dir = "";
-				if(Constants.CATEGORY_WRITE_LETTER.equals(category) &&
-						Character.isLowerCase(item.charAt(0))) {
+				if (Constants.CATEGORY_WRITE_LETTER.equals(category)
+						&& Character.isLowerCase(item.charAt(0))) {
 					dir = Constants.LEARN_WRITE_LETTER_LOWERCASE_DIR;
-				} else if(Constants.CATEGORY_WRITE_LETTER.equals(category) &&
-						Character.isUpperCase(item.charAt(0))) {
+				} else if (Constants.CATEGORY_WRITE_LETTER.equals(category)
+						&& Character.isUpperCase(item.charAt(0))) {
 					dir = Constants.LEARN_WRITE_LETTER_UPPERCASE_DIR;
-				} else if(Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
+				} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 					dir = Constants.LEARN_WRITE_NUMBER_DIR;
 				}
-				
-				InputStream ims = getAssets()
-						.open(dir + item + ".PNG");
+
+				InputStream ims = getAssets().open(dir + item + ".PNG");
 				Drawable d = Drawable.createFromStream(ims, null);
 				iv.setImageDrawable(d);
 			} catch (IOException ex) {
@@ -130,7 +129,7 @@ public class LearnItemActivity extends Activity {
 			}
 
 		} else if (Constants.CATEGORY_COLORS.equals(category)) {
-			
+
 			try {
 				InputStream ims = getAssets().open(
 						Constants.LEARN_COLOR_DIR + item + ".PNG");
@@ -138,7 +137,7 @@ public class LearnItemActivity extends Activity {
 				iv.setImageDrawable(d);
 			} catch (IOException ex) {
 			}
-			
+
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
 
 			try {
@@ -152,7 +151,6 @@ public class LearnItemActivity extends Activity {
 		}
 	}
 
-	
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -177,5 +175,5 @@ public class LearnItemActivity extends Activity {
 
 		super.onBackPressed();
 	}
-	
+
 }

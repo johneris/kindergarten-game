@@ -1,125 +1,80 @@
 package com.johneris.kindergartengame;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnTouchListener;
 
-public class DrawView extends View {
+public class DrawView extends View implements OnTouchListener {
+
+	private static final float STROKE_WIDTH = 10f;
+
+	List<Point> points = new ArrayList<Point>();
+	Paint paint = new Paint();
+
+	public DrawView(Context context, AttributeSet attributeSet) {
+		super(context, attributeSet);
+		init();
+	}
 	
-	Paint mPaint;
-
-	Bitmap mBitmap;
-	Canvas mCanvas;
-	Path mPath;
-	Paint mBitmapPaint;
-
 	public DrawView(Context context) {
 		super(context);
-		init(context);
+		init();
 	}
 	
-	public DrawView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	    init(context);
-	}
-	
-	public DrawView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-	    init(context);
-	}
-	
-	public void init(Context context) {
-		mPaint = new Paint();
-		mPaint.setAntiAlias(true);
-		mPaint.setDither(true);
-		mPaint.setColor(0xFFFF0000);
-		mPaint.setStyle(Paint.Style.STROKE);
-		mPaint.setStrokeJoin(Paint.Join.ROUND);
-		mPaint.setStrokeCap(Paint.Cap.ROUND);
-		mPaint.setStrokeWidth(20);
+	public void init() {
+		setFocusable(true);
+		setFocusableInTouchMode(true);
 
-		mPath = new Path();
-		mBitmapPaint = new Paint();
-		mBitmapPaint.setColor(Color.RED);
+		this.setOnTouchListener(this);
+
+		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(STROKE_WIDTH);
+		paint.setColor(Color.RED);
 	}
-	
+
+	@Override
+	public void onDraw(Canvas canvas) {
+		for (Point point : points) {
+			canvas.drawCircle(point.x, point.y, 5, paint);
+		}
+	}
+
+	public boolean onTouch(View view, MotionEvent event) {
+		if (event.getAction() != MotionEvent.ACTION_UP) {
+			for (int i = 0; i < event.getHistorySize(); i++) {
+				Point point = new Point();
+				point.x = event.getHistoricalX(i);
+				point.y = event.getHistoricalY(i);
+				points.add(point);
+			}
+			invalidate();
+			return true;
+		}
+		return super.onTouchEvent(event);
+	}
+
 	public void clear() {
-		mBitmap = Bitmap.createBitmap(mBitmap.getWidth(), mBitmap.getHeight(), Bitmap.Config.ARGB_8888);
-		mCanvas.setBitmap(mBitmap);
+		points.clear();
+		invalidate();
 	}
 	
-	public Bitmap getBitmap() {
-		return this.mBitmap;
-	}
+	class Point {
+		float x, y;
+		float dx, dy;
 
-	@Override
-	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
-		mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-		mCanvas = new Canvas(mBitmap);
-	}
-
-	@Override
-	public void draw(Canvas canvas) {
-		super.draw(canvas);
-		canvas.drawBitmap(mBitmap, 0, 0, mBitmapPaint);
-		canvas.drawPath(mPath, mPaint);
-	}
-
-	private float mX, mY;
-	private static final float TOUCH_TOLERANCE = 4;
-
-	private void touch_start(float x, float y) {
-		mPath.moveTo(x, y);
-		mX = x;
-		mY = y;
-	}
-
-	private void touch_move(float x, float y) {
-		float dx = Math.abs(x - mX);
-		float dy = Math.abs(y - mY);
-		if (dx >= TOUCH_TOLERANCE || dy >= TOUCH_TOLERANCE) {
-			mPath.quadTo(mX, mY, (x + mX) / 2, (y + mY) / 2);
-			mX = x;
-			mY = y;
+		@Override
+		public String toString() {
+			return x + ", " + y;
 		}
-	}
-
-	private void touch_up() {
-		mPath.lineTo(mX, mY);
-		// commit the path to our offscreen
-		mCanvas.drawPath(mPath, mPaint);
-		// mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
-		// kill this so we don't double draw
-		mPath.reset();
-	}
-
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		float x = event.getX();
-		float y = event.getY();
-
-		switch (event.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			touch_start(x, y);
-			invalidate();
-			break;
-		case MotionEvent.ACTION_MOVE:
-			touch_move(x, y);
-			invalidate();
-			break;
-		case MotionEvent.ACTION_UP:
-			touch_up();
-			invalidate();
-			break;
-		}
-		return true;
 	}
 
 }
