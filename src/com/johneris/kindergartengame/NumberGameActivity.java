@@ -188,10 +188,10 @@ public class NumberGameActivity extends Activity {
 		// get 3 random index for position 0-2 (textViews)
 		int randomPosition;
 
-		if (number == 0) {
+		if (number == 1) {
 			// first position
 			randomPosition = 0;
-		} else if (number == 1) {
+		} else if (number == 2) {
 			// middle position
 			randomPosition = 1;
 		} else if (number == 9) {
