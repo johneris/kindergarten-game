@@ -70,7 +70,7 @@ public class LearnItemActivity extends Activity {
 
 		/* Initialize Views */
 
-		tvTopTitle = (TextView) this.findViewById(R.id.global_textViewTopTitle);
+		tvTopTitle = (TextView) this.findViewById(R.id.globalGame_textViewTopTitle);
 		tvTopTitle.setText(item);
 
 		iv = (ImageView) this.findViewById(R.id.learnContent_imageView);

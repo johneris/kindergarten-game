@@ -6,6 +6,8 @@
     <string name="global_imageViewAvatarDesc">Avatar</string>
     <string name="global_textViewTopTitle">Top Title</string>
     
+    <string name="globalGame_imageView">Image</string>
+    
     <!-- User Profile -->
     <string name="userProfile_textViewUserName">User Name</string>
     <string name="userProfile_buttonLearn">Learn</string>

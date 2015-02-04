@@ -69,7 +69,7 @@ public class LearnSubMenuActivity extends Activity {
 
 		/* Initialize Views */
 
-		tvTopTitle = (TextView) this.findViewById(R.id.global_textViewTopTitle);
+		tvTopTitle = (TextView) this.findViewById(R.id.globalGame_textViewTopTitle);
 		tvTopTitle.setText(category);
 
 		tbl = (TableLayout) this.findViewById(R.id.menu_tableLayout);

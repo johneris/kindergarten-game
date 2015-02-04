@@ -28,36 +28,21 @@
             android:padding="@dimen/global_textViewTopTitlePadding"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <FrameLayout
+            android:layout_width="fill_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center" >
+            android:layout_weight="1" >
 
-            <TextView
-                android:id="@+id/numberGame_textViewN1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/numberGame_textViewPadding"
-                android:text="@string/numberGame_textViewN"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <ImageView
+                android:id="@+id/globalGame_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="@string/globalGame_imageView"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_launcher" />
 
-            <TextView
-                android:id="@+id/numberGame_textViewN2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/numberGame_textViewPadding"
-                android:text="@string/numberGame_textViewN"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-            <TextView
-                android:id="@+id/numberGame_textViewN3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/numberGame_textViewPadding"
-                android:text="@string/numberGame_textViewN"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,8 +65,8 @@
                 android:id="@+id/globalGame_buttonOption3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
 
+        </LinearLayout>
     </LinearLayout>
 
 </FrameLayout>

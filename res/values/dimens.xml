@@ -11,7 +11,7 @@
     <dimen name="global_buttonAvatarHeight">100dp</dimen>
     
     <!-- used in Game -->
-    <dimen name="global_gameTopTitlePadding">30dp</dimen>
+    <dimen name="globalGame_optionsTopBottomPadding">10dp</dimen>
     
     <!-- User Profile -->
     <dimen name="userProfile_linearLayoutAvatarWidth">300dp</dimen>
@@ -30,8 +30,6 @@
     <dimen name="scoresPreview_linearLayoutTotalScorePadding">15dp</dimen>
     
     <!-- Number Game -->
-    <dimen name="numberGame_buttonOptionWidth">50dp</dimen>
-    <dimen name="numberGame_buttonOptionHeight">50dp</dimen>
     <dimen name="numberGame_textViewPadding">15dp</dimen>
     
     <!-- Learn Content -->

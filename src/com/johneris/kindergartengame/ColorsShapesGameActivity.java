@@ -1,5 +1,7 @@
 package com.johneris.kindergartengame;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,6 +13,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Display;
@@ -30,7 +33,7 @@ import com.johneris.kindergartengame.common.MusicManager;
 import com.johneris.kindergartengame.common.Randomizer;
 import com.johneris.kindergartengame.common.StoreUserProfiles;
 
-public class NumberGameActivity extends Activity {
+public class ColorsShapesGameActivity extends Activity {
 
 	/**
 	 * boolean to continue playing music
@@ -39,7 +42,7 @@ public class NumberGameActivity extends Activity {
 
 	ProgressBar progressBar;
 
-	TextView[] textViewN;
+	ImageView imageView;
 
 	Button[] buttonOption;
 
@@ -53,6 +56,9 @@ public class NumberGameActivity extends Activity {
 
 	CountDownTimer countDownTimer;
 
+	String category;
+	ArrayList<String> lstItem;
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle state) {
@@ -65,7 +71,7 @@ public class NumberGameActivity extends Activity {
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-		this.setContentView(R.layout.number_game_layout);
+		this.setContentView(R.layout.colors_shapes_game_layout);
 
 		/* Background Image */
 
@@ -81,18 +87,25 @@ public class NumberGameActivity extends Activity {
 		ImageView iv_background = (ImageView) findViewById(R.id.global_imageViewBackground);
 		iv_background.setImageBitmap(bmp);
 
+		/* Get extras */
+
+		Bundle extras = getIntent().getExtras();
+		category = extras.getString(Keys.CATEGORY);
+
 		/* Initialize views */
 
+		String topTitle = "";
+		if (Constants.CATEGORY_COLORS.equals(category)) {
+			topTitle = "What color is this?";
+		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+			topTitle = "What is the shape at back of the lady bug?";
+		}
 		((TextView) findViewById(R.id.global_textViewTopTitle))
-				.setText("Guess the missing number");
+				.setText(topTitle);
 
 		progressBar = (ProgressBar) findViewById(R.id.globalGame_progressBar);
 
-		textViewN = new TextView[3];
-
-		textViewN[0] = (TextView) findViewById(R.id.numberGame_textViewN1);
-		textViewN[1] = (TextView) findViewById(R.id.numberGame_textViewN2);
-		textViewN[2] = (TextView) findViewById(R.id.numberGame_textViewN3);
+		imageView = (ImageView) findViewById(R.id.globalGame_imageView);
 
 		buttonOption = new Button[3];
 
@@ -109,8 +122,14 @@ public class NumberGameActivity extends Activity {
 		progressBarUpdateInterval = 180;
 		progressBar.setMax(Constants.MAX_TIME_PER_ITEM * 1000);
 
-		lstRandIndex = Randomizer.getRandomIndexes(
-				Constants.lstCountingNumber.size(), Constants.ITEMS_PER_GAME);
+		if (Constants.CATEGORY_COLORS.equals(category)) {
+			lstItem = Constants.lstColor;
+		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+			lstItem = Constants.lstShape;
+		}
+
+		lstRandIndex = Randomizer.getRandomIndexes(lstItem.size(),
+				Constants.ITEMS_PER_GAME);
 
 		game();
 	}
@@ -128,13 +147,24 @@ public class NumberGameActivity extends Activity {
 			gameResult.dateAndTimePlayed = DateFormat.getDateTimeInstance()
 					.format(Calendar.getInstance().getTime());
 
-			Constants.currUserProfile.lstCountNumberGameResult.add(gameResult);
+			if (Constants.CATEGORY_COLORS.equals(category)) {
+				Constants.currUserProfile.lstColorGameResult.add(gameResult);
+			} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+				Constants.currUserProfile.lstShapeGameResult.add(gameResult);
+			}
+
 			StoreUserProfiles.saveToFile(getApplicationContext());
 
 			// end game show results
-			Intent intent = new Intent(NumberGameActivity.this,
+			Intent intent = new Intent(ColorsShapesGameActivity.this,
 					ScoresPreviewActivity.class);
-			intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COUNT_NUMBERS);
+
+			if (Constants.CATEGORY_COLORS.equals(category)) {
+				intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
+			} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+				intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_SHAPES);
+			}
+
 			intent.putExtra(Keys.ACTIVITY, Constants.ACTIVITY_GAMES);
 			startActivity(intent);
 			finish();
@@ -178,50 +208,41 @@ public class NumberGameActivity extends Activity {
 		int randIndex = lstRandIndex.get(iteration);
 
 		// get the correct answer
-		String strNumber = Constants.lstCountingNumber.get(randIndex);
-
-		// add to correct answers
-		gameResult.lstItemName.add(strNumber);
-
-		int number = Integer.parseInt(strNumber);
-
-		// get 3 random index for position 0-2 (textViews)
-		int randomPosition;
-
-		if (number == 0) {
-			// first position
-			randomPosition = 0;
-		} else if (number == 1) {
-			// middle position
-			randomPosition = 1;
-		} else if (number == 9) {
-			// middle position
-			randomPosition = 1;
-		} else if (number == 10) {
-			// last position
-			randomPosition = 2;
-		} else {
-			// random position
-			randomPosition = Math.abs(new Random().nextInt()) % 3;
+		String strAnswer = "";
+		if (Constants.CATEGORY_COLORS.equals(category)) {
+			strAnswer = Constants.lstColor.get(randIndex);
+		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+			strAnswer = Constants.lstShape.get(randIndex);
 		}
 
-		// initialize text Views
-		for (int i = 0; i < 3; i++) {
-			int n = (number - randomPosition) + i;
-			if (n == number) {
-				textViewN[i].setText("_");
-			} else {
-				textViewN[i].setText("" + n);
-			}
+		// add to correct answers
+		gameResult.lstItemName.add(strAnswer);
+
+		// set imageView
+		String image = "";
+		if (Constants.CATEGORY_COLORS.equals(category)) {
+			image = Constants.PLAY_COLOR_DIR + strAnswer + "/"
+					// random 1-5
+					+ ((Math.abs(new Random().nextInt()) % 5) + 1) 
+					+ ".PNG";
+		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+			image = Constants.PLAY_SHAPE_DIR + strAnswer + ".PNG";
+		}
+		try {
+			InputStream ims = getAssets().open(image);
+			Drawable d = Drawable.createFromStream(ims, null);
+			imageView.setImageDrawable(d);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 
 		// get 3 random index for position 0-2 (button options)
-		randomPosition = Math.abs(new Random().nextInt()) % 3;
+		int randomPosition = Math.abs(new Random().nextInt()) % 3;
 		ArrayList<String> lstOption = new ArrayList<>();
 
 		// answer
-		lstOption.add(strNumber);
-		buttonOption[randomPosition].setText(strNumber);
+		lstOption.add(strAnswer);
+		buttonOption[randomPosition].setText(strAnswer);
 		buttonOption[randomPosition].setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -241,13 +262,11 @@ public class NumberGameActivity extends Activity {
 			if (i == randomPosition) {
 			} else {
 				String randForOption;
-				while (lstOption
-						.contains(randForOption = Constants.lstCountingNumber
-								.get(Math.abs(new Random().nextInt())
-										% Constants.lstCountingNumber.size())))
+				while (lstOption.contains(randForOption = lstItem.get(Math
+						.abs(new Random().nextInt()) % lstItem.size())))
 					;
 				lstOption.add(randForOption);
-				buttonOption[i].setText(randForOption);
+				buttonOption[i].setText("" + randForOption);
 				buttonOption[i].setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View arg0) {

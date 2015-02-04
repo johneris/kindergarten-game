@@ -47,7 +47,10 @@ public class Constants {
 	public static final String LEARN_COUNT_NUMBER_DIR = "learn/number/";
 	public static final String LEARN_SHAPE_DIR = "learn/shape/";
 	public static final String LEARN_COLOR_DIR = "learn/color/";
-
+	
+	public static final String PLAY_SHAPE_DIR = "play/shape/";
+	public static final String PLAY_COLOR_DIR = "play/color/";
+	
 	public static final String ACTIVITY_GAMES = "GamesActivity";
 	public static final String ACTIVITY_SCORES = "ScoresActivity";
 	

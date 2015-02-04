@@ -78,7 +78,8 @@ public class MenuActivity extends Activity {
 
 		/* Initialize Views */
 
-		tvTopTitle = (TextView) this.findViewById(R.id.global_textViewTopTitle);
+		tvTopTitle = (TextView) this
+				.findViewById(R.id.globalGame_textViewTopTitle);
 		tvTopTitle.setText(menu);
 
 		tbl = (TableLayout) this.findViewById(R.id.menu_tableLayout);
@@ -197,7 +198,11 @@ public class MenuActivity extends Activity {
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							ColorsShapesGameActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
+					startActivity(intent);
+					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ScoresPreviewActivity.class);
@@ -225,7 +230,11 @@ public class MenuActivity extends Activity {
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
-
+					Intent intent = new Intent(MenuActivity.this,
+							ColorsShapesGameActivity.class);
+					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_SHAPES);
+					startActivity(intent);
+					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ScoresPreviewActivity.class);
@@ -237,7 +246,6 @@ public class MenuActivity extends Activity {
 			}
 		});
 
-		
 		if (menu.equals(Constants.MENU_SCORES)) {
 			btnWriteLetters
 					.setEnabled(!Constants.currUserProfile.lstWriteLetterGameResult
@@ -248,14 +256,12 @@ public class MenuActivity extends Activity {
 			btnCountNumbers
 					.setEnabled(!Constants.currUserProfile.lstCountNumberGameResult
 							.isEmpty());
-			btnColors
-					.setEnabled(!Constants.currUserProfile.lstColorGameResult
-							.isEmpty());
-			btnShapes
-					.setEnabled(!Constants.currUserProfile.lstShapeGameResult
-							.isEmpty());
+			btnColors.setEnabled(!Constants.currUserProfile.lstColorGameResult
+					.isEmpty());
+			btnShapes.setEnabled(!Constants.currUserProfile.lstShapeGameResult
+					.isEmpty());
 		}
-		
+
 		displayMenuButtons();
 	}
 
