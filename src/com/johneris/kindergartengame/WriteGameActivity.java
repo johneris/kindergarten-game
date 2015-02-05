@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -19,9 +20,11 @@ import android.os.CountDownTimer;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -113,9 +116,24 @@ public class WriteGameActivity extends Activity {
 		btnSubmit = (Button) findViewById(R.id.writeGame_buttonSubmit);
 		btnClear = (Button) findViewById(R.id.writeGame_buttonClear);
 
+		btnSubmit.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				gameResult.lstIsCorrect.add(true);
+
+				double time = ((double) progressBar.getProgress()) / 1000;
+				gameResult.lstItemDuration.add(time);
+
+				overallDuration += time;
+				iteration++;
+				game();
+			}
+		});
+
 		btnClear.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				// clear canvas
 				drawView.clear();
 				drawView.init();
 			}
@@ -213,7 +231,7 @@ public class WriteGameActivity extends Activity {
 	}
 
 	private void initGameItem() {
-		// clear the canvas
+		// clear canvas
 		drawView.clear();
 		drawView.init();
 
@@ -252,24 +270,48 @@ public class WriteGameActivity extends Activity {
 			InputStream ims = getAssets().open(image);
 			Drawable d = Drawable.createFromStream(ims, null);
 			imageView.setImageDrawable(d);
+			ViewTreeObserver vto = imageView.getViewTreeObserver();
+			vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+				public boolean onPreDraw() {
+					// Remove after the first run so it doesn't fire forever
+					imageView.getViewTreeObserver().removeOnPreDrawListener(
+							this);
+					initDrawView();
+					return true;
+				}
+			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		btnSubmit.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				gameResult.lstIsCorrect.add(true);
+	}
 
-				double time = ((double) progressBar.getProgress()) / 1000;
-				gameResult.lstItemDuration.add(time);
+	private void initDrawView() {
 
-				overallDuration += time;
-				iteration++;
-				game();
-			}
-		});
+		FrameLayout frameLayoutCanvas = (FrameLayout) findViewById(R.id.writeGame_frameLayoutCanvas);
+		frameLayoutCanvas.removeAllViews();
 
+		// Get image matrix values and place them in an array
+		float[] f = new float[9];
+		imageView.getImageMatrix().getValues(f);
+
+		// Extract the scale values using the constants (if aspect ratio
+		// maintained, scaleX == scaleY)
+		final float scaleX = f[Matrix.MSCALE_X];
+		final float scaleY = f[Matrix.MSCALE_Y];
+
+		final int origW = imageView.getDrawable().getIntrinsicWidth();
+		final int origH = imageView.getDrawable().getIntrinsicHeight();
+
+		// Calculate the actual dimensions
+		final int actW = Math.round(origW * scaleX);
+		final int actH = Math.round(origH * scaleY);
+
+		// initialize a DrawView
+		drawView.getLayoutParams().width = actW;
+		drawView.getLayoutParams().height = actH;
+
+		frameLayoutCanvas.addView(drawView);
 	}
 
 	@Override

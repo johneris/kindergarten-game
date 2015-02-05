@@ -28,39 +28,32 @@
             android:padding="@dimen/global_textViewTopTitlePadding"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <LinearLayout
+        <FrameLayout
+            android:id="@+id/writeGame_frameLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center" >
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/writeGame_imageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/writingGame_imageViewDesc"
+                android:scaleType="fitCenter" />
 
             <FrameLayout
-                android:layout_width="@dimen/writingGame_canvasWidth"
-                android:layout_height="@dimen/writingGame_canvasHeight" >
+                android:id="@+id/writeGame_frameLayoutCanvas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center" >
 
-                <ImageView
-                    android:id="@+id/writeGame_imageView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:contentDescription="@string/writingGame_imageViewDesc"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_launcher" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" >
-
-                    <com.johneris.kindergartengame.DrawView
-                        android:id="@+id/writeGame_drawView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
-
-                </LinearLayout>
+                <com.johneris.kindergartengame.DrawView
+                    android:id="@+id/writeGame_drawView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
             </FrameLayout>
-
-        </LinearLayout>
+        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -80,9 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/writingGame_buttonClear" />
-
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>
