@@ -37,6 +37,8 @@
     <dimen name="writingGame_canvasHeight">150dp</dimen>
     
     <!-- Learn Content -->
-    <dimen name="learnContent_imageViewMargin">15dp</dimen>
+    <dimen name="learnItem_imageViewMargin">15dp</dimen>
+    <dimen name="learnItem_textViewTopTitleWidth">150dp</dimen>
+    <dimen name="learnItem_buttonClearMargin">10dp</dimen>
     
 </resources>

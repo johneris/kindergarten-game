@@ -101,9 +101,9 @@ public class LearnSubMenuActivity extends Activity {
 		for (int i = 0; i < Constants.lstLetter.size(); i++) {
 			final String letter = Constants.lstLetter.get(i);
 
-			Button btnUppercase = new Button(getApplicationContext());
-			btnUppercase.setText(letter.toUpperCase());
-			btnUppercase.setOnClickListener(new OnClickListener() {
+			Button btnLetter = new Button(getApplicationContext());
+			btnLetter.setText(letter.toUpperCase() + " " + letter.toLowerCase());
+			btnLetter.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View arg0) {
 					Intent intent = new Intent(LearnSubMenuActivity.this,
@@ -115,24 +115,9 @@ public class LearnSubMenuActivity extends Activity {
 				}
 			});
 
-			Button btnLowercase = new Button(this.getApplicationContext());
-			btnLowercase.setText(letter.toLowerCase());
-			btnLowercase.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					Intent intent = new Intent(LearnSubMenuActivity.this,
-							LearnItemActivity.class);
-					intent.putExtra(Keys.LEARN_ITEM, letter.toLowerCase());
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_LETTER);
-					startActivity(intent);
-					finish();
-				}
-			});
-
-			tblRow.addView(btnUppercase);
-			tblRow.addView(btnLowercase);
+			tblRow.addView(btnLetter);
 			
-			if ((((i + 1) % 3) == 0) || (i == (Constants.lstLetter.size() - 1))) {
+			if ((((i + 1) % 6) == 0) || (i == (Constants.lstLetter.size() - 1))) {
 				tblRow.setGravity(Gravity.CENTER);
 				tbl.addView(tblRow);
 				tblRows.add(new TableRow(getApplicationContext()));
@@ -282,7 +267,7 @@ public class LearnSubMenuActivity extends Activity {
 			
 			tblRow.addView(btnColor);
 			
-			if ((((i + 1) % 3) == 0) || (i == (Constants.lstColor.size() - 1))) {
+			if ((((i + 1) % 4) == 0) || (i == (Constants.lstColor.size() - 1))) {
 				tblRow.setGravity(Gravity.CENTER);
 				tbl.addView(tblRow);
 				tblRows.add(new TableRow(getApplicationContext()));

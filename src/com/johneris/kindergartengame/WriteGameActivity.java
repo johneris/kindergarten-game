@@ -5,7 +5,16 @@ import java.io.InputStream;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Random;
+
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+import org.opencv.android.Utils;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Scalar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -13,10 +22,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +46,8 @@ import com.johneris.kindergartengame.common.Randomizer;
 import com.johneris.kindergartengame.common.StoreUserProfiles;
 
 public class WriteGameActivity extends Activity {
+
+	public static final String TAG = "WriteGameActivity";
 
 	/**
 	 * boolean to continue playing music
@@ -64,11 +75,33 @@ public class WriteGameActivity extends Activity {
 	String category;
 	ArrayList<String> lstItem;
 
+	private BaseLoaderCallback mOpenCVCallBack = new BaseLoaderCallback(this) {
+		@Override
+		public void onManagerConnected(int status) {
+			switch (status) {
+			case LoaderCallbackInterface.SUCCESS: {
+				Log.i(TAG, "OpenCV loaded successfully");
+			}
+				break;
+			default: {
+				super.onManagerConnected(status);
+			}
+				break;
+			}
+		}
+	};
+
 	@SuppressLint("NewApi")
 	@Override
 	public void onCreate(Bundle state) {
 
 		super.onCreate(state);
+
+		Log.i(TAG, "Trying to load OpenCV library");
+		if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_2, this,
+				mOpenCVCallBack)) {
+			Log.e(TAG, "Cannot connect to OpenCV Manager");
+		}
 
 		/* Create a full screen window */
 
@@ -82,7 +115,7 @@ public class WriteGameActivity extends Activity {
 
 		// adapt the image to the size of the display
 		Display display = getWindowManager().getDefaultDisplay();
-		Point size = new Point();
+		android.graphics.Point size = new android.graphics.Point();
 		display.getSize(size);
 		Bitmap bmp = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(
 				getResources(), R.drawable.background_game), size.x, size.y,
@@ -242,10 +275,6 @@ public class WriteGameActivity extends Activity {
 		String strAnswer = "";
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
 			strAnswer = Constants.lstLetter.get(randIndex);
-			// random uppercase or lowercase
-			boolean randBool = new Random().nextBoolean();
-			strAnswer = randBool ? strAnswer.toLowerCase() : strAnswer
-					.toUpperCase();
 		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 			strAnswer = Constants.lstWritingNumber.get(randIndex);
 		}
@@ -256,15 +285,9 @@ public class WriteGameActivity extends Activity {
 		// set imageView
 		String image = "";
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
-			if (Character.isLowerCase(strAnswer.charAt(0))) {
-				image = Constants.PLAY_WRITE_LETTER_LOWERCASE_DIR + strAnswer
-						+ ".PNG";
-			} else if (Character.isUpperCase(strAnswer.charAt(0))) {
-				image = Constants.PLAY_WRITE_LETTER_UPPERCASE_DIR + strAnswer
-						+ ".PNG";
-			}
+			image = Constants.WRITE_LETTER_DIR + strAnswer + ".PNG";
 		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
-			image = Constants.PLAY_WRITE_NUMBER_DIR + strAnswer + ".PNG";
+			image = Constants.WRITE_NUMBER_DIR + strAnswer + ".PNG";
 		}
 		try {
 			InputStream ims = getAssets().open(image);
@@ -312,6 +335,36 @@ public class WriteGameActivity extends Activity {
 		drawView.getLayoutParams().height = actH;
 
 		frameLayoutCanvas.addView(drawView);
+
+//		checkAnswer();
+	}
+
+	private void checkAnswer() {
+
+		Mat matAnswer = Mat.zeros(100, 400, CvType.CV_8UC3);
+		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
+				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
+				2);
+
+		Mat matCorrect = Mat.zeros(100, 400, CvType.CV_8UC3);
+		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
+				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
+				2);
+
+		Mat matDiff = Mat.zeros(100, 400, CvType.CV_8UC3);
+		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
+				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
+				2);
+
+		Core.absdiff(matAnswer, matCorrect, matDiff);
+
+		// convert to bitmap:
+		Bitmap bm = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+				Bitmap.Config.ARGB_8888);
+		Utils.matToBitmap(matDiff, bm);
+
+		// find the imageview and draw it!
+		imageView.setImageBitmap(bm);
 	}
 
 	@Override

@@ -40,19 +40,12 @@ public class Constants {
 
 	public static final int MAX_TIME_PER_ITEM = 9;
 	public static final int ITEMS_PER_GAME = 5;
-
-	public static final String LEARN_WRITE_LETTER_UPPERCASE_DIR = "learn/write/letter/uppercase/";
-	public static final String LEARN_WRITE_LETTER_LOWERCASE_DIR = "learn/write/letter/lowercase/";
-	public static final String LEARN_WRITE_NUMBER_DIR = "learn/write/number/";
-	public static final String LEARN_COUNT_NUMBER_DIR = "learn/number/";
-	public static final String LEARN_SHAPE_DIR = "learn/shape/";
-	public static final String LEARN_COLOR_DIR = "learn/color/";
 	
-	public static final String PLAY_WRITE_LETTER_UPPERCASE_DIR = "play/write/letter/uppercase/";
-	public static final String PLAY_WRITE_LETTER_LOWERCASE_DIR = "play/write/letter/lowercase/";
-	public static final String PLAY_WRITE_NUMBER_DIR = "play/write/number/";
-	public static final String PLAY_SHAPE_DIR = "play/shape/";
-	public static final String PLAY_COLOR_DIR = "play/color/";
+	public static final String WRITE_LETTER_DIR = "write/letter/";
+	public static final String WRITE_NUMBER_DIR = "write/number/";
+	public static final String COUNT_NUMBER_DIR = "number/";
+	public static final String SHAPE_DIR = "shape/";
+	public static final String COLOR_DIR = "color/";
 	
 	public static final String ACTIVITY_GAMES = "GamesActivity";
 	public static final String ACTIVITY_SCORES = "ScoresActivity";

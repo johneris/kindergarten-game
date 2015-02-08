@@ -15,29 +15,60 @@
         android:gravity="center_horizontal"
         android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/globalGame_textViewTopTitle"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/global_textViewTopTitlePadding"
-            android:textAppearance="?android:attr/textAppearanceLarge" />
+            android:gravity="center_horizontal" >
+
+            <Button
+                android:id="@+id/learnItem_buttonPrevious"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/learnItem_buttonPrevious" />
+
+            <TextView
+                android:id="@+id/globalGame_textViewTopTitle"
+                android:layout_width="@dimen/learnItem_textViewTopTitleWidth"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/global_textViewTopTitlePadding"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/learnItem_buttonNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/learnItem_buttonNext" />
+
+        </LinearLayout>
 
         <FrameLayout
             android:id="@+id/learnItem_frameLayoutImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
 
             <ImageView
-                android:id="@+id/learnContent_imageView"
+                android:id="@+id/learnItem_imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:layout_margin="@dimen/learnContent_imageViewMargin"
+                android:layout_margin="@dimen/learnItem_imageViewMargin"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/learnItem_imageViewDesc"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_launcher" />
-
         </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/learnItem_linearLayoutBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>

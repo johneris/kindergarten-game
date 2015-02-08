@@ -98,7 +98,7 @@ public class ColorsShapesGameActivity extends Activity {
 		if (Constants.CATEGORY_COLORS.equals(category)) {
 			topTitle = "What color is this?";
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
-			topTitle = "What is the shape at back of the lady bug?";
+			topTitle = "What shape is this?";
 		}
 		((TextView) findViewById(R.id.global_textViewTopTitle))
 				.setText(topTitle);
@@ -221,12 +221,15 @@ public class ColorsShapesGameActivity extends Activity {
 		// set imageView
 		String image = "";
 		if (Constants.CATEGORY_COLORS.equals(category)) {
-			image = Constants.PLAY_COLOR_DIR + strAnswer + "/"
+			image = Constants.COLOR_DIR + strAnswer + "/"
 					// random 1-5
 					+ ((Math.abs(new Random().nextInt()) % 5) + 1) 
 					+ ".PNG";
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
-			image = Constants.PLAY_SHAPE_DIR + strAnswer + ".PNG";
+			image = Constants.SHAPE_DIR + strAnswer + "/"
+					// random 1-5
+					+ ((Math.abs(new Random().nextInt()) % 5) + 1) 
+					+ ".PNG";
 		}
 		try {
 			InputStream ims = getAssets().open(image);

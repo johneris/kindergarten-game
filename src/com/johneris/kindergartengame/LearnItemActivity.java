@@ -2,6 +2,7 @@ package com.johneris.kindergartengame;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -12,12 +13,14 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.johneris.kindergartengame.common.Constants;
@@ -31,8 +34,15 @@ public class LearnItemActivity extends Activity {
 	TextView tvTopTitle;
 	ImageView iv;
 
+	Button btnPrev;
+	Button btnNext;
+
+	LinearLayout linearLayoutBot;
+
 	String item;
 	String category;
+
+	ArrayList<String> itemsInCategory;
 
 	@SuppressLint("NewApi")
 	@Override
@@ -72,44 +82,76 @@ public class LearnItemActivity extends Activity {
 
 		tvTopTitle = (TextView) this
 				.findViewById(R.id.globalGame_textViewTopTitle);
-		tvTopTitle.setText(item);
 
-		iv = (ImageView) this.findViewById(R.id.learnContent_imageView);
+		iv = (ImageView) this.findViewById(R.id.learnItem_imageView);
 
-		loadImage();
+		btnNext = (Button) this.findViewById(R.id.learnItem_buttonNext);
+		btnPrev = (Button) this.findViewById(R.id.learnItem_buttonPrevious);
+
+		linearLayoutBot = (LinearLayout) findViewById(R.id.learnItem_linearLayoutBottom);
+
+		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
+			itemsInCategory = Constants.lstLetter;
+		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
+			itemsInCategory = Constants.lstWritingNumber;
+		} else if (Constants.CATEGORY_COUNT_NUMBERS.equals(category)) {
+			itemsInCategory = Constants.lstCountingNumber;
+		} else if (Constants.CATEGORY_COLORS.equals(category)) {
+			itemsInCategory = Constants.lstColor;
+		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
+			itemsInCategory = Constants.lstShape;
+		}
+
+		load();
 	}
 
-	private void loadImage() {
+	@SuppressLint("DefaultLocale")
+	private void load() {
 
+		// remove view containing Clear
+		linearLayoutBot.removeAllViews();
+
+		// set title
+		tvTopTitle.setText(item);
+
+		// load image
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)
 				|| Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 
 			FrameLayout frameLayout = (FrameLayout) findViewById(R.id.learnItem_frameLayoutImage);
+			frameLayout.removeAllViews();
 
 			final DrawView drawView = new DrawView(getApplicationContext());
 
 			LinearLayout linearLayout = new LinearLayout(
 					getApplicationContext());
 
-			LayoutParams params = new LayoutParams(
-					frameLayout.getLayoutParams().width,
-					frameLayout.getLayoutParams().height, 1.0f);
-			linearLayout.setLayoutParams(params);
+			Button btnClear = new Button(getApplicationContext());
+			btnClear.setText("Clear");
+			linearLayoutBot.addView(btnClear);
 
 			linearLayout.addView(drawView);
+			frameLayout.addView(iv);
+
 			frameLayout.addView(linearLayout);
 
-			try {
-				String dir = "";
-				if (Constants.CATEGORY_WRITE_LETTER.equals(category)
-						&& Character.isLowerCase(item.charAt(0))) {
-					dir = Constants.LEARN_WRITE_LETTER_LOWERCASE_DIR;
-				} else if (Constants.CATEGORY_WRITE_LETTER.equals(category)
-						&& Character.isUpperCase(item.charAt(0))) {
-					dir = Constants.LEARN_WRITE_LETTER_UPPERCASE_DIR;
-				} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
-					dir = Constants.LEARN_WRITE_NUMBER_DIR;
+			btnClear.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					drawView.clear();
 				}
+			});
+
+			String dir = "";
+			if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
+				dir = Constants.WRITE_LETTER_DIR;
+				tvTopTitle.setText(item.toUpperCase() + " "
+						+ item.toLowerCase());
+			} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
+				dir = Constants.WRITE_NUMBER_DIR;
+			}
+
+			try {
 
 				InputStream ims = getAssets().open(dir + item + ".PNG");
 				Drawable d = Drawable.createFromStream(ims, null);
@@ -122,7 +164,7 @@ public class LearnItemActivity extends Activity {
 
 			try {
 				InputStream ims = getAssets().open(
-						Constants.LEARN_COUNT_NUMBER_DIR + item + ".PNG");
+						Constants.COUNT_NUMBER_DIR + item + ".PNG");
 				Drawable d = Drawable.createFromStream(ims, null);
 				iv.setImageDrawable(d);
 			} catch (IOException ex) {
@@ -132,7 +174,7 @@ public class LearnItemActivity extends Activity {
 
 			try {
 				InputStream ims = getAssets().open(
-						Constants.LEARN_COLOR_DIR + item + ".PNG");
+						Constants.COLOR_DIR + item + ".PNG");
 				Drawable d = Drawable.createFromStream(ims, null);
 				iv.setImageDrawable(d);
 			} catch (IOException ex) {
@@ -142,13 +184,44 @@ public class LearnItemActivity extends Activity {
 
 			try {
 				InputStream ims = getAssets().open(
-						Constants.LEARN_SHAPE_DIR + item + ".PNG");
+						Constants.SHAPE_DIR + item + ".PNG");
 				Drawable d = Drawable.createFromStream(ims, null);
 				iv.setImageDrawable(d);
 			} catch (IOException ex) {
 			}
 
 		}
+
+		// set button onclicks
+		btnPrev.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				int i = getCurrIndex();
+				i = (i - 1 < 0) ? itemsInCategory.size() - 1 : i - 1;
+				item = itemsInCategory.get(i);
+				load();
+			}
+		});
+
+		btnNext.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				int i = getCurrIndex();
+				i = (i + 1 == itemsInCategory.size()) ? 0 : i + 1;
+				item = itemsInCategory.get(i);
+				load();
+			}
+		});
+	}
+
+	private int getCurrIndex() {
+		int i;
+		for (i = 0; i < this.itemsInCategory.size(); i++) {
+			if (this.itemsInCategory.get(i).equals(item)) {
+				return i;
+			}
+		}
+		return i;
 	}
 
 	@Override

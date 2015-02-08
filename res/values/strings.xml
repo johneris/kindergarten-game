@@ -55,4 +55,9 @@
     <string name="writingGame_buttonClear">Clear</string>
     <string name="writingGame_imageViewDesc">writing image</string>
     
+    <!-- Learn Item -->
+    <string name="learnItem_buttonPrevious">&lt;</string>
+    <string name="learnItem_buttonNext">&gt;</string>
+    <string name="learnItem_imageViewDesc">Main image</string>
+    
 </resources>
