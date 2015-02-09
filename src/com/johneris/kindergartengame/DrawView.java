@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -24,12 +23,12 @@ public class DrawView extends View implements OnTouchListener {
 		super(context, attributeSet);
 		init();
 	}
-	
+
 	public DrawView(Context context) {
 		super(context);
 		init();
 	}
-	
+
 	public void init() {
 		setFocusable(true);
 		setFocusableInTouchMode(true);
@@ -47,9 +46,6 @@ public class DrawView extends View implements OnTouchListener {
 		for (Point point : points) {
 			canvas.drawCircle(point.x, point.y, 5, paint);
 		}
-		if(points.isEmpty()) return;
-		Point lastPoint = points.get(points.size()-1);
-		Log.i("", lastPoint.toString());
 	}
 
 	public boolean onTouch(View view, MotionEvent event) {
@@ -70,7 +66,7 @@ public class DrawView extends View implements OnTouchListener {
 		points.clear();
 		invalidate();
 	}
-	
+
 	class Point {
 		float x, y;
 		float dx, dy;

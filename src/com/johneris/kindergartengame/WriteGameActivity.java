@@ -1,5 +1,8 @@
 package com.johneris.kindergartengame;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.DateFormat;
@@ -11,10 +14,7 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
-import org.opencv.core.CvType;
 import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Scalar;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -22,9 +22,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
@@ -75,7 +77,7 @@ public class WriteGameActivity extends Activity {
 	String category;
 	ArrayList<String> lstItem;
 
-	private BaseLoaderCallback mOpenCVCallBack = new BaseLoaderCallback(this) {
+	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 		@Override
 		public void onManagerConnected(int status) {
 			switch (status) {
@@ -97,11 +99,8 @@ public class WriteGameActivity extends Activity {
 
 		super.onCreate(state);
 
-		Log.i(TAG, "Trying to load OpenCV library");
-		if (!OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_2, this,
-				mOpenCVCallBack)) {
-			Log.e(TAG, "Cannot connect to OpenCV Manager");
-		}
+		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_10, this,
+				mLoaderCallback);
 
 		/* Create a full screen window */
 
@@ -152,7 +151,7 @@ public class WriteGameActivity extends Activity {
 		btnSubmit.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				gameResult.lstIsCorrect.add(true);
+				gameResult.lstIsCorrect.add(checkAnswer());
 
 				double time = ((double) progressBar.getProgress()) / 1000;
 				gameResult.lstItemDuration.add(time);
@@ -242,7 +241,7 @@ public class WriteGameActivity extends Activity {
 				@Override
 				public void onFinish() {
 					progressBar.setProgress(progressBar.getMax());
-					gameResult.lstIsCorrect.add(false);
+					gameResult.lstIsCorrect.add(checkAnswer());
 
 					double time = ((double) progressBar.getProgress()) / 1000;
 					gameResult.lstItemDuration.add(time);
@@ -335,36 +334,68 @@ public class WriteGameActivity extends Activity {
 		drawView.getLayoutParams().height = actH;
 
 		frameLayoutCanvas.addView(drawView);
-
-//		checkAnswer();
 	}
 
-	private void checkAnswer() {
+	private boolean checkAnswer() {
 
-		Mat matAnswer = Mat.zeros(100, 400, CvType.CV_8UC3);
-		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
-				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
-				2);
+		Bitmap bmpAnswer = ((BitmapDrawable) imageView.getDrawable())
+				.getBitmap();
+		Mat matAnswer = new Mat();
+		Utils.bitmapToMat(bmpAnswer, matAnswer);
 
-		Mat matCorrect = Mat.zeros(100, 400, CvType.CV_8UC3);
-		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
-				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
-				2);
+		Bitmap bmpCorrect = ((BitmapDrawable) imageView.getDrawable())
+				.getBitmap();
+		Mat matCorrect = new Mat();
+		Utils.bitmapToMat(bmpCorrect, matCorrect);
 
-		Mat matDiff = Mat.zeros(100, 400, CvType.CV_8UC3);
-		Core.putText(matAnswer, "hi there ;)", new Point(30, 80),
-				Core.FONT_HERSHEY_SCRIPT_SIMPLEX, 2.2, new Scalar(200, 200, 0),
-				2);
+		Mat matDiff = new Mat();
 
 		Core.absdiff(matAnswer, matCorrect, matDiff);
 
 		// convert to bitmap:
-		Bitmap bm = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+		Bitmap bmpDiff = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
 				Bitmap.Config.ARGB_8888);
-		Utils.matToBitmap(matDiff, bm);
+		Utils.matToBitmap(matDiff, bmpDiff);
 
 		// find the imageview and draw it!
-		imageView.setImageBitmap(bm);
+		// imageView.setImageBitmap(bm);
+
+		String extr = Environment.getExternalStorageDirectory().toString();
+		File mFolder = new File(extr + "/K");
+
+		if (!mFolder.exists()) {
+			mFolder.mkdir();
+		}
+
+		try {
+			String s;
+			File f;
+			FileOutputStream fos = null;
+			
+			s = "" + iteration + "_ans.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpAnswer.compress(Bitmap.CompressFormat.PNG, 70, fos);
+			
+			s = "" + iteration + "_correct.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpCorrect.compress(Bitmap.CompressFormat.PNG, 70, fos);
+			
+			s = "" + iteration + "_diff.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpDiff.compress(Bitmap.CompressFormat.PNG, 70, fos);
+			
+			fos.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return true;
 	}
 
 	@Override
