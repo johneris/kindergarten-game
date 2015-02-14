@@ -21,6 +21,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -40,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.johneris.kindergartengame.DrawView.Point;
 import com.johneris.kindergartengame.common.Constants;
 import com.johneris.kindergartengame.common.GameResult;
 import com.johneris.kindergartengame.common.Keys;
@@ -338,62 +340,66 @@ public class WriteGameActivity extends Activity {
 
 	private boolean checkAnswer() {
 
-		Bitmap bmpAnswer = ((BitmapDrawable) imageView.getDrawable())
-				.getBitmap();
-		Mat matAnswer = new Mat();
-		Utils.bitmapToMat(bmpAnswer, matAnswer);
-
-		Bitmap bmpCorrect = ((BitmapDrawable) imageView.getDrawable())
-				.getBitmap();
-		Mat matCorrect = new Mat();
-		Utils.bitmapToMat(bmpCorrect, matCorrect);
-
-		Mat matDiff = new Mat();
-
-		Core.absdiff(matAnswer, matCorrect, matDiff);
-
-		// convert to bitmap:
-		Bitmap bmpDiff = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
-				Bitmap.Config.ARGB_8888);
-		Utils.matToBitmap(matDiff, bmpDiff);
-
-		// find the imageview and draw it!
-		// imageView.setImageBitmap(bm);
-
-		String extr = Environment.getExternalStorageDirectory().toString();
-		File mFolder = new File(extr + "/K");
-
-		if (!mFolder.exists()) {
-			mFolder.mkdir();
-		}
-
-		try {
-			String s;
-			File f;
-			FileOutputStream fos = null;
-			
-			s = "" + iteration + "_ans.png";
-			f = new File(mFolder.getAbsolutePath(), s);
-			fos = new FileOutputStream(f);
-			bmpAnswer.compress(Bitmap.CompressFormat.PNG, 70, fos);
-			
-			s = "" + iteration + "_correct.png";
-			f = new File(mFolder.getAbsolutePath(), s);
-			fos = new FileOutputStream(f);
-			bmpCorrect.compress(Bitmap.CompressFormat.PNG, 70, fos);
-			
-			s = "" + iteration + "_diff.png";
-			f = new File(mFolder.getAbsolutePath(), s);
-			fos = new FileOutputStream(f);
-			bmpDiff.compress(Bitmap.CompressFormat.PNG, 70, fos);
-			
-			fos.flush();
-			fos.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		Bitmap bmpAnswer = ((BitmapDrawable) imageView.getDrawable())
+//				.getBitmap().copy(Bitmap.Config.ARGB_8888, true);
+//		Canvas canvas = new Canvas(bmpAnswer);
+//		for (Point point : drawView.points) {
+//			canvas.drawCircle(point.x, point.y, 5, drawView.getPaint());
+//		}
+//		Mat matAnswer = new Mat();
+//		Utils.bitmapToMat(bmpAnswer, matAnswer);
+//
+//		Bitmap bmpCorrect = ((BitmapDrawable) imageView.getDrawable())
+//				.getBitmap();
+//		Mat matCorrect = new Mat();
+//		Utils.bitmapToMat(bmpCorrect, matCorrect);
+//
+//		Mat matDiff = new Mat();
+//
+//		Core.absdiff(matAnswer, matCorrect, matDiff);
+//
+//		// convert to bitmap:
+//		Bitmap bmpDiff = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+//				Bitmap.Config.ARGB_8888);
+//		Utils.matToBitmap(matDiff, bmpDiff);
+//
+//		// find the imageview and draw it!
+//		// imageView.setImageBitmap(bm);
+//
+//		String extr = Environment.getExternalStorageDirectory().toString();
+//		File mFolder = new File(extr + "/K");
+//
+//		if (!mFolder.exists()) {
+//			mFolder.mkdir();
+//		}
+//
+//		try {
+//			String s;
+//			File f;
+//			FileOutputStream fos = null;
+//
+//			s = "" + iteration + "_ans.png";
+//			f = new File(mFolder.getAbsolutePath(), s);
+//			fos = new FileOutputStream(f);
+//			bmpAnswer.compress(Bitmap.CompressFormat.PNG, 70, fos);
+//
+//			s = "" + iteration + "_correct.png";
+//			f = new File(mFolder.getAbsolutePath(), s);
+//			fos = new FileOutputStream(f);
+//			bmpCorrect.compress(Bitmap.CompressFormat.PNG, 70, fos);
+//
+//			s = "" + iteration + "_diff.png";
+//			f = new File(mFolder.getAbsolutePath(), s);
+//			fos = new FileOutputStream(f);
+//			bmpDiff.compress(Bitmap.CompressFormat.PNG, 70, fos);
+//
+//			fos.flush();
+//			fos.close();
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 		return true;
 	}

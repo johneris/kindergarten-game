@@ -66,6 +66,10 @@ public class DrawView extends View implements OnTouchListener {
 		points.clear();
 		invalidate();
 	}
+	
+	public Paint getPaint() {
+		return this.getPaint();
+	}
 
 	class Point {
 		float x, y;
