@@ -15,15 +15,16 @@ import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -36,10 +37,10 @@ import android.view.ViewTreeObserver;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.johneris.kindergartengame.DrawView.Point;
 import com.johneris.kindergartengame.common.Constants;
@@ -78,6 +79,10 @@ public class WriteGameActivity extends Activity {
 
 	String category;
 	ArrayList<String> lstItem;
+
+	Bitmap bmpAnswer;
+	Bitmap bmpCorrect;
+	Bitmap bmpDiff;
 
 	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
 		@Override
@@ -179,7 +184,7 @@ public class WriteGameActivity extends Activity {
 		iteration = 0;
 		overallDuration = 0;
 
-		progressBarUpdateInterval = 180;
+		progressBarUpdateInterval = Constants.MAX_TIME_PER_ITEM * 20;
 		progressBar.setMax(Constants.MAX_TIME_PER_ITEM * 1000);
 
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
@@ -285,13 +290,20 @@ public class WriteGameActivity extends Activity {
 
 		// set imageView
 		String image = "";
+		String ansImg = "";
 		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
 			image = Constants.WRITE_LETTER_DIR + strAnswer + ".PNG";
+			ansImg = Constants.WRITE_LETTER_DIR + "correct/" + strAnswer
+					+ ".PNG";
 		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
 			image = Constants.WRITE_NUMBER_DIR + strAnswer + ".PNG";
+			ansImg = Constants.WRITE_NUMBER_DIR + "correct/" + strAnswer
+					+ ".PNG";
 		}
+		final String fImage = image;
+		// correct
 		try {
-			InputStream ims = getAssets().open(image);
+			InputStream ims = getAssets().open(ansImg);
 			Drawable d = Drawable.createFromStream(ims, null);
 			imageView.setImageDrawable(d);
 			ViewTreeObserver vto = imageView.getViewTreeObserver();
@@ -300,108 +312,149 @@ public class WriteGameActivity extends Activity {
 					// Remove after the first run so it doesn't fire forever
 					imageView.getViewTreeObserver().removeOnPreDrawListener(
 							this);
-					initDrawView();
+
+					imageView.setDrawingCacheEnabled(true);
+					imageView.buildDrawingCache(true);
+					bmpCorrect = imageView.getDrawingCache().copy(
+							Config.ARGB_8888, false);
+					imageView.setDrawingCacheEnabled(false);
+
+					// trace
+					try {
+						InputStream ims = getAssets().open(fImage);
+						Drawable d = Drawable.createFromStream(ims, null);
+						imageView.setImageDrawable(d);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
 					return true;
 				}
 			});
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	private void initDrawView() {
-
-		FrameLayout frameLayoutCanvas = (FrameLayout) findViewById(R.id.writeGame_frameLayoutCanvas);
-		frameLayoutCanvas.removeAllViews();
-
-		// Get image matrix values and place them in an array
-		float[] f = new float[9];
-		imageView.getImageMatrix().getValues(f);
-
-		// Extract the scale values using the constants (if aspect ratio
-		// maintained, scaleX == scaleY)
-		final float scaleX = f[Matrix.MSCALE_X];
-		final float scaleY = f[Matrix.MSCALE_Y];
-
-		final int origW = imageView.getDrawable().getIntrinsicWidth();
-		final int origH = imageView.getDrawable().getIntrinsicHeight();
-
-		// Calculate the actual dimensions
-		final int actW = Math.round(origW * scaleX);
-		final int actH = Math.round(origH * scaleY);
-
-		// initialize a DrawView
-		drawView.getLayoutParams().width = actW;
-		drawView.getLayoutParams().height = actH;
-
-		frameLayoutCanvas.addView(drawView);
 	}
 
 	private boolean checkAnswer() {
 
-//		Bitmap bmpAnswer = ((BitmapDrawable) imageView.getDrawable())
-//				.getBitmap().copy(Bitmap.Config.ARGB_8888, true);
-//		Canvas canvas = new Canvas(bmpAnswer);
-//		for (Point point : drawView.points) {
-//			canvas.drawCircle(point.x, point.y, 5, drawView.getPaint());
-//		}
-//		Mat matAnswer = new Mat();
-//		Utils.bitmapToMat(bmpAnswer, matAnswer);
-//
-//		Bitmap bmpCorrect = ((BitmapDrawable) imageView.getDrawable())
-//				.getBitmap();
-//		Mat matCorrect = new Mat();
-//		Utils.bitmapToMat(bmpCorrect, matCorrect);
-//
-//		Mat matDiff = new Mat();
-//
-//		Core.absdiff(matAnswer, matCorrect, matDiff);
-//
-//		// convert to bitmap:
-//		Bitmap bmpDiff = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
-//				Bitmap.Config.ARGB_8888);
-//		Utils.matToBitmap(matDiff, bmpDiff);
-//
-//		// find the imageview and draw it!
-//		// imageView.setImageBitmap(bm);
-//
-//		String extr = Environment.getExternalStorageDirectory().toString();
-//		File mFolder = new File(extr + "/K");
-//
-//		if (!mFolder.exists()) {
-//			mFolder.mkdir();
-//		}
-//
-//		try {
-//			String s;
-//			File f;
-//			FileOutputStream fos = null;
-//
-//			s = "" + iteration + "_ans.png";
-//			f = new File(mFolder.getAbsolutePath(), s);
-//			fos = new FileOutputStream(f);
-//			bmpAnswer.compress(Bitmap.CompressFormat.PNG, 70, fos);
-//
-//			s = "" + iteration + "_correct.png";
-//			f = new File(mFolder.getAbsolutePath(), s);
-//			fos = new FileOutputStream(f);
-//			bmpCorrect.compress(Bitmap.CompressFormat.PNG, 70, fos);
-//
-//			s = "" + iteration + "_diff.png";
-//			f = new File(mFolder.getAbsolutePath(), s);
-//			fos = new FileOutputStream(f);
-//			bmpDiff.compress(Bitmap.CompressFormat.PNG, 70, fos);
-//
-//			fos.flush();
-//			fos.close();
-//		} catch (FileNotFoundException e) {
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
+		Mat matCorrect = new Mat();
+		Utils.bitmapToMat(bmpCorrect, matCorrect);
+		Imgproc.cvtColor(matCorrect, matCorrect, Imgproc.COLOR_BGR2GRAY);
+		Imgproc.threshold(matCorrect, matCorrect, 128, 255,
+				Imgproc.THRESH_BINARY);
 
-		return true;
+		imageView.setDrawingCacheEnabled(true);
+		imageView.buildDrawingCache(true);
+		bmpAnswer = imageView.getDrawingCache().copy(Config.ARGB_8888, true);
+		imageView.setDrawingCacheEnabled(false);
+		Canvas canvas = new Canvas(bmpAnswer);
+		for (Point point : drawView.points) {
+			canvas.drawCircle(point.x, point.y, 5, drawView.paint);
+		}
+
+		Mat matAnswer = new Mat();
+		Utils.bitmapToMat(bmpAnswer, matAnswer);
+		Imgproc.cvtColor(matAnswer, matAnswer, Imgproc.COLOR_BGR2GRAY);
+		Imgproc.threshold(matAnswer, matAnswer, 128, 255, Imgproc.THRESH_BINARY);
+
+		Mat matDiff = new Mat();
+		Core.absdiff(matAnswer, matCorrect, matDiff);
+
+		// to emphasize difference
+		Core.add(matDiff, new Scalar(0, 0, 0, 255), matDiff);
+
+		// convert to bitmap
+		bmpCorrect = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+				Bitmap.Config.ARGB_8888);
+		Utils.matToBitmap(matCorrect, bmpCorrect);
+
+		// convert to bitmap
+		bmpAnswer = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+				Bitmap.Config.ARGB_8888);
+		Utils.matToBitmap(matAnswer, bmpAnswer);
+
+		// convert to bitmap
+		bmpDiff = Bitmap.createBitmap(matDiff.cols(), matDiff.rows(),
+				Bitmap.Config.ARGB_8888);
+		Utils.matToBitmap(matDiff, bmpDiff);
+
+		Scalar result = Core.sumElems(matDiff);
+		double sum = result.val[0];
+		double similarityPercentage = 100 - (((sum / (matDiff.width() * matDiff
+				.height())) / 255) * 1000);
+
+		String extr = Environment.getExternalStorageDirectory().toString();
+		File mFolder = new File(extr + "/K");
+
+		if (!mFolder.exists()) {
+			mFolder.mkdir();
+		}
+
+		try {
+			String s;
+			File f;
+			FileOutputStream fos = null;
+
+			s = "" + iteration + "_ans.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpAnswer.compress(Bitmap.CompressFormat.PNG, 70, fos);
+
+			s = "" + iteration + "_correct.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpCorrect.compress(Bitmap.CompressFormat.PNG, 70, fos);
+
+			s = "" + iteration + "_diff.png";
+			f = new File(mFolder.getAbsolutePath(), s);
+			fos = new FileOutputStream(f);
+			bmpDiff.compress(Bitmap.CompressFormat.PNG, 70, fos);
+
+			fos.flush();
+			fos.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		double minSimilarity = 0;
+
+		if (Constants.CATEGORY_WRITE_LETTER.equals(category)) {
+			String currLetter = gameResult.lstItemName
+					.get(gameResult.lstItemName.size() - 1);
+			if ("IT".contains(currLetter)) {
+				minSimilarity = 80;
+			} else if ("LPYFZ".contains(currLetter)) {
+				minSimilarity = 65;
+			} else if ("SACXVRGKEJK".contains(currLetter)) {
+				minSimilarity = 60;
+			} else if ("BHGNDOQ".contains(currLetter)) {
+				minSimilarity = 50;
+			} else if ("MW".contains(currLetter)) {
+				minSimilarity = 30;
+			} else {
+				minSimilarity = 60;
+			}
+		} else if (Constants.CATEGORY_WRITE_NUMBER.equals(category)) {
+			String currNumber = gameResult.lstItemName
+					.get(gameResult.lstItemName.size() - 1);
+			if ("1".contains(currNumber)) {
+				minSimilarity = 80;
+			} else {
+				minSimilarity = 60;
+			}
+		}
+
+		boolean isCorrect = (similarityPercentage >= minSimilarity);
+
+		Toast.makeText(getApplicationContext(),
+				(isCorrect ? "Correct!" : "Sorry. That's Wrong."),
+				// + " " + similarityPercentage,
+				Toast.LENGTH_SHORT).show();
+
+		return isCorrect;
 	}
 
 	@Override

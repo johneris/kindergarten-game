@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.johneris.kindergartengame.common.Constants;
 import com.johneris.kindergartengame.common.GameResult;
@@ -119,7 +120,7 @@ public class ColorsShapesGameActivity extends Activity {
 		iteration = 0;
 		overallDuration = 0;
 
-		progressBarUpdateInterval = 180;
+		progressBarUpdateInterval = Constants.MAX_TIME_PER_ITEM * 20;
 		progressBar.setMax(Constants.MAX_TIME_PER_ITEM * 1000);
 
 		if (Constants.CATEGORY_COLORS.equals(category)) {
@@ -222,14 +223,12 @@ public class ColorsShapesGameActivity extends Activity {
 		String image = "";
 		if (Constants.CATEGORY_COLORS.equals(category)) {
 			image = Constants.COLOR_DIR + strAnswer + "/"
-					// random 1-5
-					+ ((Math.abs(new Random().nextInt()) % 5) + 1) 
-					+ ".PNG";
+			// random 1-5
+					+ ((Math.abs(new Random().nextInt()) % 5) + 1) + ".PNG";
 		} else if (Constants.CATEGORY_SHAPES.equals(category)) {
 			image = Constants.SHAPE_DIR + strAnswer + "/"
-					// random 1-5
-					+ ((Math.abs(new Random().nextInt()) % 5) + 1) 
-					+ ".PNG";
+			// random 1-5
+					+ ((Math.abs(new Random().nextInt()) % 5) + 1) + ".PNG";
 		}
 		try {
 			InputStream ims = getAssets().open(image);
@@ -243,12 +242,18 @@ public class ColorsShapesGameActivity extends Activity {
 		int randomPosition = Math.abs(new Random().nextInt()) % 3;
 		ArrayList<String> lstOption = new ArrayList<>();
 
+		final String fStrAnswer = strAnswer;
+		
 		// answer
 		lstOption.add(strAnswer);
 		buttonOption[randomPosition].setText(strAnswer);
 		buttonOption[randomPosition].setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				Toast.makeText(getApplicationContext(),
+						"Correct!",
+						Toast.LENGTH_SHORT).show();
+				
 				gameResult.lstIsCorrect.add(true);
 
 				double time = ((double) progressBar.getProgress()) / 1000;
@@ -273,6 +278,10 @@ public class ColorsShapesGameActivity extends Activity {
 				buttonOption[i].setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
+						Toast.makeText(getApplicationContext(),
+								"Wrong! The correct answer is " + fStrAnswer,
+								Toast.LENGTH_SHORT).show();
+
 						gameResult.lstIsCorrect.add(false);
 
 						double time = ((double) progressBar.getProgress()) / 1000;

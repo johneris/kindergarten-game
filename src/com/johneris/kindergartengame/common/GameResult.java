@@ -56,13 +56,15 @@ public class GameResult implements Serializable {
 		for(int i = 0; i < lstItemName.size(); i++) {
 			boolean isCorrect = lstIsCorrect.get(i);
 			int score = 0;
+			// 3 because score is up to 3
+			double scoreInterval = Constants.MAX_TIME_PER_ITEM / 3;
 			if(isCorrect) {
 				double itemDuration = lstItemDuration.get(i);
-				if(itemDuration >=0 && itemDuration <= 3) {
+				if(itemDuration >=0 && itemDuration <= scoreInterval) {
 					score = 3;
-				} else if(itemDuration >=3 && itemDuration <= 6) {
+				} else if(itemDuration >=scoreInterval && itemDuration <= (scoreInterval*2)) {
 					score = 2;
-				} else if(itemDuration >=6 && itemDuration <= 9) {
+				} else if(itemDuration >=(scoreInterval*2) && itemDuration <= (scoreInterval*3)) {
 					score = 1;
 				}
 			}

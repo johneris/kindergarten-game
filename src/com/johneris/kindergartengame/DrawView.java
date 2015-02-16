@@ -14,7 +14,7 @@ import android.view.View.OnTouchListener;
 
 public class DrawView extends View implements OnTouchListener {
 
-	private static final float STROKE_WIDTH = 10f;
+	private float STROKE_WIDTH = 10f;
 
 	List<Point> points = new ArrayList<Point>();
 	Paint paint = new Paint();
@@ -39,6 +39,10 @@ public class DrawView extends View implements OnTouchListener {
 		paint.setStyle(Paint.Style.STROKE);
 		paint.setStrokeWidth(STROKE_WIDTH);
 		paint.setColor(Color.RED);
+	}
+	
+	public void setStrokeWidth(float strokeWidth) {
+		this.STROKE_WIDTH = strokeWidth;
 	}
 
 	@Override
@@ -65,10 +69,6 @@ public class DrawView extends View implements OnTouchListener {
 	public void clear() {
 		points.clear();
 		invalidate();
-	}
-	
-	public Paint getPaint() {
-		return this.getPaint();
 	}
 
 	class Point {

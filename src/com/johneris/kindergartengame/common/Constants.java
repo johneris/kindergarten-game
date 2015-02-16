@@ -38,7 +38,7 @@ public class Constants {
 	public static final String MENU_PLAY = "PLAY";
 	public static final String MENU_SCORES = "SCORES";
 
-	public static final int MAX_TIME_PER_ITEM = 9;
+	public static final int MAX_TIME_PER_ITEM = 24;
 	public static final int ITEMS_PER_GAME = 5;
 	
 	public static final String WRITE_LETTER_DIR = "write/letter/";

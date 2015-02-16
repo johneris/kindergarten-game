@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.johneris.kindergartengame.common.Constants;
 import com.johneris.kindergartengame.common.GameResult;
@@ -106,7 +107,7 @@ public class NumberGameActivity extends Activity {
 		iteration = 0;
 		overallDuration = 0;
 
-		progressBarUpdateInterval = 180;
+		progressBarUpdateInterval = Constants.MAX_TIME_PER_ITEM * 20;
 		progressBar.setMax(Constants.MAX_TIME_PER_ITEM * 1000);
 
 		lstRandIndex = Randomizer.getRandomIndexes(
@@ -219,12 +220,18 @@ public class NumberGameActivity extends Activity {
 		randomPosition = Math.abs(new Random().nextInt()) % 3;
 		ArrayList<String> lstOption = new ArrayList<>();
 
+		final String fStrAnswer = strNumber;
+		
 		// answer
 		lstOption.add(strNumber);
 		buttonOption[randomPosition].setText(strNumber);
 		buttonOption[randomPosition].setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+				Toast.makeText(getApplicationContext(),
+						"Correct!",
+						Toast.LENGTH_SHORT).show();
+				
 				gameResult.lstIsCorrect.add(true);
 
 				double time = ((double) progressBar.getProgress()) / 1000;
@@ -251,6 +258,10 @@ public class NumberGameActivity extends Activity {
 				buttonOption[i].setOnClickListener(new OnClickListener() {
 					@Override
 					public void onClick(View arg0) {
+						Toast.makeText(getApplicationContext(),
+								"Wrong! The correct answer is " + fStrAnswer,
+								Toast.LENGTH_SHORT).show();
+						
 						gameResult.lstIsCorrect.add(false);
 
 						double time = ((double) progressBar.getProgress()) / 1000;
