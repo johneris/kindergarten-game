@@ -221,26 +221,26 @@ public class NewUserActivity extends Activity {
 			public void onTextChanged(CharSequence text, int arg1, int arg2,
 					int arg3) {
 				boolean isEditTextEmpty = text.toString().equals("");
-				btnWinnieThePooh.setEnabled(!isEditTextEmpty);
-				btnMickeyMouse.setEnabled(!isEditTextEmpty);
-				btnDonaldDuck.setEnabled(!isEditTextEmpty);
-				btnHelloKitty.setEnabled(!isEditTextEmpty);
-				btnDora.setEnabled(!isEditTextEmpty);
-				btnSpongebob.setEnabled(!isEditTextEmpty);
-				btnPatrick.setEnabled(!isEditTextEmpty);
-				btnTweetyBird.setEnabled(!isEditTextEmpty);
+				btnWinnieThePooh.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnMickeyMouse.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnDonaldDuck.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnHelloKitty.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnDora.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnSpongebob.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnPatrick.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
+				btnTweetyBird.setVisibility(!isEditTextEmpty ? View.VISIBLE : View.GONE);
 				manageEnableButtons();
 			}
 		});
 
-		btnWinnieThePooh.setEnabled(false);
-		btnMickeyMouse.setEnabled(false);
-		btnDonaldDuck.setEnabled(false);
-		btnHelloKitty.setEnabled(false);
-		btnDora.setEnabled(false);
-		btnSpongebob.setEnabled(false);
-		btnPatrick.setEnabled(false);
-		btnTweetyBird.setEnabled(false);
+		btnWinnieThePooh.setVisibility(View.GONE);
+		btnMickeyMouse.setVisibility(View.GONE);
+		btnDonaldDuck.setVisibility(View.GONE);
+		btnHelloKitty.setVisibility(View.GONE);
+		btnDora.setVisibility(View.GONE);
+		btnSpongebob.setVisibility(View.GONE);
+		btnPatrick.setVisibility(View.GONE);
+		btnTweetyBird.setVisibility(View.GONE);
 
 	}
 
@@ -249,42 +249,42 @@ public class NewUserActivity extends Activity {
 
 		user = Constants.getUserProfileForAvatar(EAvatar.WINNIE_THE_POOH);
 		if(user != null) {
-			btnWinnieThePooh.setEnabled(false);
+			btnWinnieThePooh.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.MICKEY_MOUSE);
 		if(user != null) {
-			btnMickeyMouse.setEnabled(false);
+			btnMickeyMouse.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.DONALD_DUCK);
 		if(user != null) {
-			btnDonaldDuck.setEnabled(false);
+			btnDonaldDuck.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.HELLO_KITTY);
 		if(user != null) {
-			btnHelloKitty.setEnabled(false);
+			btnHelloKitty.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.DORA);
 		if(user != null) {
-			btnDora.setEnabled(false);
+			btnDora.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.SPONGEBOB);
 		if(user != null) {
-			btnSpongebob.setEnabled(false);
+			btnSpongebob.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.PATRICK);
 		if(user != null) {
-			btnPatrick.setEnabled(false);
+			btnPatrick.setVisibility(View.GONE);
 		}
 
 		user = Constants.getUserProfileForAvatar(EAvatar.TWEETY_BIRD);
 		if(user != null) {
-			btnTweetyBird.setEnabled(false);
+			btnTweetyBird.setVisibility(View.GONE);
 		}
 
 	}

@@ -40,10 +40,11 @@ public class MenuActivity extends Activity {
 	Button btnShapes;
 
 	TableLayout tbl;
+	TableRow tblRow;
 
 	String menu;
 
-	@SuppressLint("NewApi")
+	@SuppressLint({ "NewApi", "DefaultLocale" })
 	@Override
 	public void onCreate(Bundle state) {
 
@@ -83,30 +84,37 @@ public class MenuActivity extends Activity {
 		tvTopTitle.setText(menu);
 
 		tbl = (TableLayout) this.findViewById(R.id.menu_tableLayout);
+		tblRow = new TableRow(getApplicationContext());
 
 		Resources res = getResources();
 
-		btnWriteLetters = new Button(getApplicationContext());
+		btnWriteLetters = (Button) getLayoutInflater().inflate(
+				R.layout.menu_button, tblRow, false);
 		btnWriteLetters
 				.setText(res.getString(R.string.menu_buttonWriteLetters));
-		btnWriteLetters.setWidth(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
-		btnWriteLetters.setHeight(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareHeight));
 		btnWriteLetters.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM, Constants.lstLetter.get(0)
+							.toUpperCase());
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_WRITE_LETTER);
 					startActivity(intent);
 					finish();
+					// Intent intent = new Intent(MenuActivity.this,
+					// LearnSubMenuActivity.class);
+					// intent.putExtra(Keys.CATEGORY,
+					// Constants.CATEGORY_WRITE_LETTER);
+					// startActivity(intent);
+					// finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 					Intent intent = new Intent(MenuActivity.this,
 							WriteGameActivity.class);
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_LETTER);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_LETTER);
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
@@ -121,27 +129,33 @@ public class MenuActivity extends Activity {
 			}
 		});
 
-		btnWriteNumbers = new Button(getApplicationContext());
+		btnWriteNumbers = (Button) getLayoutInflater().inflate(
+				R.layout.menu_button, tblRow, false);
 		btnWriteNumbers
 				.setText(res.getString(R.string.menu_buttonWriteNumbers));
-		btnWriteNumbers.setWidth(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
-		btnWriteNumbers.setHeight(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareHeight));
 		btnWriteNumbers.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM,
+							Constants.lstWritingNumber.get(0));
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_WRITE_NUMBER);
 					startActivity(intent);
 					finish();
+					// Intent intent = new Intent(MenuActivity.this,
+					// LearnSubMenuActivity.class);
+					// intent.putExtra(Keys.CATEGORY,
+					// Constants.CATEGORY_WRITE_NUMBER);
+					// startActivity(intent);
+					// finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 					Intent intent = new Intent(MenuActivity.this,
 							WriteGameActivity.class);
-					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_WRITE_NUMBER);
+					intent.putExtra(Keys.CATEGORY,
+							Constants.CATEGORY_WRITE_NUMBER);
 					startActivity(intent);
 					finish();
 				} else if (menu.equals(Constants.MENU_SCORES)) {
@@ -156,23 +170,28 @@ public class MenuActivity extends Activity {
 			}
 		});
 
-		btnCountNumbers = new Button(getApplicationContext());
+		btnCountNumbers = (Button) getLayoutInflater().inflate(
+				R.layout.menu_button, tblRow, false);
 		btnCountNumbers
 				.setText(res.getString(R.string.menu_buttonCountNumbers));
-		btnCountNumbers.setWidth(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
-		btnCountNumbers.setHeight(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareHeight));
 		btnCountNumbers.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM,
+							Constants.lstCountingNumber.get(0));
 					intent.putExtra(Keys.CATEGORY,
 							Constants.CATEGORY_COUNT_NUMBERS);
 					startActivity(intent);
 					finish();
+					// Intent intent = new Intent(MenuActivity.this,
+					// LearnSubMenuActivity.class);
+					// intent.putExtra(Keys.CATEGORY,
+					// Constants.CATEGORY_COUNT_NUMBERS);
+					// startActivity(intent);
+					// finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 					Intent intent = new Intent(MenuActivity.this,
 							NumberGameActivity.class);
@@ -190,21 +209,25 @@ public class MenuActivity extends Activity {
 			}
 		});
 
-		btnColors = new Button(getApplicationContext());
+		btnColors = (Button) getLayoutInflater().inflate(R.layout.menu_button,
+				tblRow, false);
 		btnColors.setText(res.getString(R.string.menu_buttonColors));
-		btnColors.setWidth(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
-		btnColors.setHeight(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareHeight));
 		btnColors.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM, Constants.lstColor.get(0));
 					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_COLORS);
 					startActivity(intent);
 					finish();
+					// Intent intent = new Intent(MenuActivity.this,
+					// LearnSubMenuActivity.class);
+					// intent.putExtra(Keys.CATEGORY,
+					// Constants.CATEGORY_COLORS);
+					// startActivity(intent);
+					// finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ColorsShapesGameActivity.class);
@@ -222,21 +245,25 @@ public class MenuActivity extends Activity {
 			}
 		});
 
-		btnShapes = new Button(getApplicationContext());
+		btnShapes = (Button) getLayoutInflater().inflate(R.layout.menu_button,
+				tblRow, false);
 		btnShapes.setText(res.getString(R.string.menu_buttonShapes));
-		btnShapes.setWidth(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareWidth));
-		btnShapes.setHeight(res
-				.getDimensionPixelSize(R.dimen.global_buttonSquareHeight));
 		btnShapes.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				if (menu.equals(Constants.MENU_LEARN)) {
 					Intent intent = new Intent(MenuActivity.this,
-							LearnSubMenuActivity.class);
+							LearnItemActivity.class);
+					intent.putExtra(Keys.LEARN_ITEM, Constants.lstShape.get(0));
 					intent.putExtra(Keys.CATEGORY, Constants.CATEGORY_SHAPES);
 					startActivity(intent);
 					finish();
+					// Intent intent = new Intent(MenuActivity.this,
+					// LearnSubMenuActivity.class);
+					// intent.putExtra(Keys.CATEGORY,
+					// Constants.CATEGORY_SHAPES);
+					// startActivity(intent);
+					// finish();
 				} else if (menu.equals(Constants.MENU_PLAY)) {
 					Intent intent = new Intent(MenuActivity.this,
 							ColorsShapesGameActivity.class);
@@ -254,27 +281,29 @@ public class MenuActivity extends Activity {
 			}
 		});
 
+		displayMenuButtons();
+
 		if (menu.equals(Constants.MENU_SCORES)) {
 			btnWriteLetters
-					.setEnabled(!Constants.currUserProfile.lstWriteLetterGameResult
-							.isEmpty());
+					.setVisibility(!Constants.currUserProfile.lstWriteLetterGameResult
+							.isEmpty() ? View.VISIBLE : View.GONE);
 			btnWriteNumbers
-					.setEnabled(!Constants.currUserProfile.lstWriteNumberGameResult
-							.isEmpty());
+					.setVisibility(!Constants.currUserProfile.lstWriteNumberGameResult
+							.isEmpty() ? View.VISIBLE : View.GONE);
 			btnCountNumbers
-					.setEnabled(!Constants.currUserProfile.lstCountNumberGameResult
-							.isEmpty());
-			btnColors.setEnabled(!Constants.currUserProfile.lstColorGameResult
-					.isEmpty());
-			btnShapes.setEnabled(!Constants.currUserProfile.lstShapeGameResult
-					.isEmpty());
+					.setVisibility(!Constants.currUserProfile.lstCountNumberGameResult
+							.isEmpty() ? View.VISIBLE : View.GONE);
+			btnColors
+					.setVisibility(!Constants.currUserProfile.lstColorGameResult
+							.isEmpty() ? View.VISIBLE : View.GONE);
+			btnShapes
+					.setVisibility(!Constants.currUserProfile.lstShapeGameResult
+							.isEmpty() ? View.VISIBLE : View.GONE);
 		}
 
-		displayMenuButtons();
 	}
 
 	private void displayMenuButtons() {
-		TableRow tblRow = new TableRow(getApplicationContext());
 		tblRow.addView(btnWriteLetters);
 		tblRow.addView(btnWriteNumbers);
 		tblRow.addView(btnCountNumbers);

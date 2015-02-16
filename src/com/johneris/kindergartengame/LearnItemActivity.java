@@ -240,9 +240,15 @@ public class LearnItemActivity extends Activity {
 	}
 
 	public void onBackPressed() {
+//		Intent intent = new Intent(LearnItemActivity.this,
+//				LearnSubMenuActivity.class);
+//		intent.putExtra(Keys.CATEGORY, category);
+//		startActivity(intent);
+//		finish();
+		
 		Intent intent = new Intent(LearnItemActivity.this,
-				LearnSubMenuActivity.class);
-		intent.putExtra(Keys.CATEGORY, category);
+				MenuActivity.class);
+		intent.putExtra(Keys.MENU, Constants.MENU_LEARN);
 		startActivity(intent);
 		finish();
 

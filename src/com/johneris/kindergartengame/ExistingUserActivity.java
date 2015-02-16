@@ -106,36 +106,51 @@ public class ExistingUserActivity extends Activity {
 		UserProfile user;
 
 		user = Constants.getUserProfileForAvatar(EAvatar.WINNIE_THE_POOH);
-		btnWinnieThePooh.setEnabled(user != null);
+		btnWinnieThePooh.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvWinnieThePoohUserName.setText(user != null ? user.userName : "");
+		tvWinnieThePoohUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.MICKEY_MOUSE);
-		btnMickeyMouse.setEnabled(user != null);
+		btnMickeyMouse.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvMickeyMouseUserName.setText(user != null ? user.userName : "");
+		tvMickeyMouseUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.DONALD_DUCK);
-		btnDonaldDuck.setEnabled(user != null);
+		btnDonaldDuck.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvDonaldDuckUserName.setText(user != null ? user.userName : "");
+		tvDonaldDuckUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.HELLO_KITTY);
-		btnHelloKitty.setEnabled(user != null);
+		btnHelloKitty.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvHelloKittyUserName.setText(user != null ? user.userName : "");
+		tvHelloKittyUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.DORA);
-		btnDora.setEnabled(user != null);
+		btnDora.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvDoraUserName.setText(user != null ? user.userName : "");
+		tvDoraUserName.setVisibility(user != null ? View.VISIBLE : View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.SPONGEBOB);
-		btnSpongebob.setEnabled(user != null);
+		btnSpongebob.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvSpongebobUserName.setText(user != null ? user.userName : "");
+		tvSpongebobUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.PATRICK);
-		btnPatrick.setEnabled(user != null);
+		btnPatrick.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvPatrickUserName.setText(user != null ? user.userName : "");
+		tvPatrickUserName
+				.setVisibility(user != null ? View.VISIBLE : View.GONE);
 
 		user = Constants.getUserProfileForAvatar(EAvatar.TWEETY_BIRD);
-		btnTweetyBird.setEnabled(user != null);
+		btnTweetyBird.setVisibility(user != null ? View.VISIBLE : View.GONE);
 		tvTweetyBirdUserName.setText(user != null ? user.userName : "");
+		tvTweetyBirdUserName.setVisibility(user != null ? View.VISIBLE
+				: View.GONE);
 
 		btnWinnieThePooh.setOnClickListener(new OnClickListener() {
 			@Override

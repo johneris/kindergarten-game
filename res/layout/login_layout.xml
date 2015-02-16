@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/global_imageViewBackgroundDesc" />
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,13 +19,29 @@
             android:id="@+id/login_buttonNewUser"
             android:layout_width="@dimen/login_buttonWidth"
             android:layout_height="wrap_content"
-            android:text="@string/login_buttonNewUser" />
+            android:layout_margin="5dp"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#54FF54"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="25"
+            android:text="@string/login_buttonNewUser"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/login_buttonExistingUser"
             android:layout_width="@dimen/login_buttonWidth"
             android:layout_height="wrap_content"
-            android:text="@string/login_buttonExistingUser" />
+            android:layout_margin="5dp"
+            android:background="@drawable/buttonshape"
+            android:shadowColor="#54FF54"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="25"
+            android:text="@string/login_buttonExistingUser"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
 
     </LinearLayout>
 

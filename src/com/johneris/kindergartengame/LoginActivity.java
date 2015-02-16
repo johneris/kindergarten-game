@@ -84,16 +84,16 @@ public class LoginActivity extends Activity {
         
         // all avatar has been taken
         if(Constants.lstUserProfile.size() == EAvatar.values().length) {
-        	btnNewUser.setEnabled(false);
+        	btnNewUser.setVisibility(View.GONE);
         } else {
-        	btnNewUser.setEnabled(true);
+        	btnNewUser.setVisibility(View.VISIBLE);
         }
         
         // has existing user profile
         if(!Constants.lstUserProfile.isEmpty()) {
-        	btnExistingUser.setEnabled(true);
+        	btnExistingUser.setVisibility(View.VISIBLE);
         } else {
-        	btnExistingUser.setEnabled(false);
+        	btnExistingUser.setVisibility(View.GONE);
         }
 	}
 	

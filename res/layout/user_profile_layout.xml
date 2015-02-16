@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    
+
     <ImageView
         android:id="@+id/global_imageViewBackground"
         android:layout_width="wrap_content"
@@ -28,7 +28,6 @@
                 android:padding="@dimen/userProfile_imageViewAvatarPadding"
                 android:scaleType="centerInside"
                 android:src="@drawable/avatar_donald_duck" />
-
         </FrameLayout>
 
         <LinearLayout
@@ -48,31 +47,58 @@
                 android:id="@+id/userProfile_buttonLearn"
                 android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_buttonLearn" />
+                android:layout_margin="3dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#54FF54"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="25"
+                android:text="@string/userProfile_buttonLearn"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/userProfile_buttonPlay"
                 android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_buttonPlay" />
+                android:layout_margin="3dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#54FF54"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="25"
+                android:text="@string/userProfile_buttonPlay"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/userProfile_buttonScores"
                 android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_buttonScores" />
+                android:layout_margin="3dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#54FF54"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="25"
+                android:text="@string/userProfile_buttonScores"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/userProfile_buttonSettings"
                 android:layout_width="@dimen/userProfile_buttonWidth"
                 android:layout_height="wrap_content"
-                android:text="@string/userProfile_buttonSettings" />
+                android:layout_margin="3dp"
+                android:background="@drawable/buttonshape"
+                android:shadowColor="#54FF54"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="25"
+                android:text="@string/userProfile_buttonSettings"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/userProfile_buttonAbout"
-                android:layout_width="@dimen/userProfile_buttonWidth"
-                android:layout_height="wrap_content"
-                android:text="@string/userProfile_buttonAbout" />
         </LinearLayout>
     </LinearLayout>
 

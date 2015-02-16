@@ -30,16 +30,24 @@
                     android:id="@+id/global_buttonWinneThePooh"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_winnie_the_pooh" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_winnie_the_pooh"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvWinneThePoohUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/existingUser_textViewUserName" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -52,16 +60,24 @@
                     android:id="@+id/global_buttonMickeyMouse"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_mickey_mouse" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_mickey_mouse"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvMickeyMouseUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/existingUser_textViewUserName" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -74,16 +90,24 @@
                     android:id="@+id/global_buttonDonaldDuck"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_donald_duck" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_donald_duck"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvDonaldDuckUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/existingUser_textViewUserName" />
-
             </LinearLayout>
 
             <LinearLayout
@@ -96,18 +120,25 @@
                     android:id="@+id/global_buttonHelloKitty"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_hello_kitty" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_hello_kitty"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvHelloKittyUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/existingUser_textViewUserName" />
-
             </LinearLayout>
-
         </LinearLayout>
 
         <LinearLayout
@@ -125,9 +156,18 @@
                     android:id="@+id/global_buttonDora"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_dora" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_dora"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvDoraUserName"
@@ -146,9 +186,18 @@
                     android:id="@+id/global_buttonSpongebob"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_spongebob" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_spongebob"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvSpongebobUserName"
@@ -167,9 +216,18 @@
                     android:id="@+id/global_buttonPatrick"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_patrick" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_patrick"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvPatrickUserName"
@@ -188,9 +246,18 @@
                     android:id="@+id/global_buttonTweetyBird"
                     android:layout_width="@dimen/global_buttonAvatarWidth"
                     android:layout_height="@dimen/global_buttonAvatarHeight"
+                    android:layout_margin="3dp"
+                    android:background="@drawable/buttonshape"
                     android:contentDescription="@string/global_imageViewAvatarDesc"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/avatar_tweety_bird" />
+                    android:padding="10dp"
+                    android:scaleType="fitCenter"
+                    android:shadowColor="#54FF54"
+                    android:shadowDx="0"
+                    android:shadowDy="0"
+                    android:shadowRadius="25"
+                    android:src="@drawable/avatar_tweety_bird"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvTweetyBirdUserName"
@@ -199,7 +266,6 @@
                     android:text="@string/existingUser_textViewUserName" />
             </LinearLayout>
         </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>
